@@ -27,7 +27,7 @@ function getTierEs(amount: number, currency: "CLP" | "USD"): DonationTier {
       title: "Guardián Humboldt",
       impact:
         "Tu aporte significativo financia directamente equipos de monitoreo científico en terreno y asesoría legal especializada para proteger al pingüino de Humboldt. Eres parte esencial de esta defensa.",
-      accentColor: "#E8CF63",
+      accentColor: "#D0A457",
     };
   }
   if (amount >= t2) {
@@ -35,7 +35,7 @@ function getTierEs(amount: number, currency: "CLP" | "USD"): DonationTier {
       title: "Defensor Humboldt",
       impact:
         "Tu donación contribuye a la asesoría legal y al trabajo científico que defiende el hábitat del pingüino de Humboldt. Gracias a personas como tú, esta causa tiene fuerza real.",
-      accentColor: "#E8CF63",
+      accentColor: "#D0A457",
     };
   }
   if (amount >= t1) {
@@ -43,14 +43,14 @@ function getTierEs(amount: number, currency: "CLP" | "USD"): DonationTier {
       title: "Apoyo ciudadano",
       impact:
         "Tu aporte ayuda a mantener la campaña activa, financiar el monitoreo científico de la especie y llegar a más personas con esta causa.",
-      accentColor: "#38B6FF",
+      accentColor: "#6A8D52",
     };
   }
   return {
     title: "Amigo del pingüino",
     impact:
       "Tu contribución mantiene la campaña visible y suma a la defensa del pingüino de Humboldt. Cada apoyo, sin importar el tamaño, hace la diferencia.",
-    accentColor: "#38B6FF",
+    accentColor: "#6A8D52",
   };
 }
 
@@ -60,7 +60,7 @@ function getTierEn(amount: number): DonationTier {
       title: "Humboldt Guardian",
       impact:
         "Your significant contribution directly funds on-the-ground scientific monitoring teams and specialized legal counsel to protect the Humboldt penguin. You are an essential part of this defense.",
-      accentColor: "#E8CF63",
+      accentColor: "#D0A457",
     };
   }
   if (amount >= 5) {
@@ -68,7 +68,7 @@ function getTierEn(amount: number): DonationTier {
       title: "Humboldt Defender",
       impact:
         "Your donation contributes to the legal and scientific work defending the Humboldt penguin's habitat. Because of people like you, this cause carries real weight.",
-      accentColor: "#E8CF63",
+      accentColor: "#D0A457",
     };
   }
   if (amount >= 3) {
@@ -76,14 +76,14 @@ function getTierEn(amount: number): DonationTier {
       title: "Citizen Supporter",
       impact:
         "Your contribution helps keep the campaign active, fund scientific species monitoring, and reach more people with this cause.",
-      accentColor: "#38B6FF",
+      accentColor: "#6A8D52",
     };
   }
   return {
     title: "Penguin Friend",
     impact:
       "Your contribution keeps the campaign visible and adds to the defense of the Humboldt penguin. Every act of support, no matter the size, makes a difference.",
-    accentColor: "#38B6FF",
+    accentColor: "#6A8D52",
   };
 }
 
@@ -183,8 +183,8 @@ export async function sendDonationConfirmationEmail(input: DonationConfirmationI
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${escapeHtml(subject)}</title>
 </head>
-<body style="margin:0;padding:0;background-color:#05070b;font-family:'Segoe UI',Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#05070b;padding:40px 16px;">
+<body style="margin:0;padding:0;background-color:#090B07;font-family:'Segoe UI',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#090B07;padding:40px 16px;">
     <tr>
       <td align="center">
         <table width="100%" cellpadding="0" cellspacing="0" style="max-width:540px;">
@@ -236,7 +236,7 @@ export async function sendDonationConfirmationEmail(input: DonationConfirmationI
               </table>
 
               <!-- Impact -->
-              <p style="margin:0 0 28px;font-size:15px;line-height:1.75;color:#a0b4c8;">
+              <p style="margin:0 0 28px;font-size:15px;line-height:1.75;color:#C8C0AD;">
                 ${escapeHtml(thankYouBody)}
               </p>
 
@@ -244,7 +244,7 @@ export async function sendDonationConfirmationEmail(input: DonationConfirmationI
               <table cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
                 <tr>
                   <td align="center" style="background-color:${tier.accentColor};border-radius:100px;">
-                    <a href="${siteUrl}" style="display:inline-block;padding:13px 28px;font-size:14px;font-weight:700;color:#05070b;text-decoration:none;letter-spacing:0.02em;">
+                    <a href="${siteUrl}" style="display:inline-block;padding:13px 28px;font-size:14px;font-weight:700;color:#090B07;text-decoration:none;letter-spacing:0.02em;">
                       ${ctaLabel}
                     </a>
                   </td>
@@ -257,7 +257,7 @@ export async function sendDonationConfirmationEmail(input: DonationConfirmationI
               </table>
 
               <!-- Receipt -->
-              <p style="margin:0;font-size:13px;line-height:1.7;color:#637a8a;">
+              <p style="margin:0;font-size:13px;line-height:1.7;color:#8C887A;">
                 ${escapeHtml(receiptLine)}
               </p>
 
@@ -267,13 +267,13 @@ export async function sendDonationConfirmationEmail(input: DonationConfirmationI
           <!-- Footer -->
           <tr>
             <td align="center" style="padding-top:28px;">
-              <p style="margin:0 0 6px;font-size:12px;color:#3d5263;">
-                <strong style="color:#4d6a7a;">${footerTeam}</strong>
+              <p style="margin:0 0 6px;font-size:12px;color:#6D6A5F;">
+                <strong style="color:#8F8978;">${footerTeam}</strong>
               </p>
-              <p style="margin:0;font-size:12px;color:#3d5263;">
-                <a href="mailto:${supportEmail}" style="color:#38B6FF;text-decoration:none;">${supportEmail}</a>
+              <p style="margin:0;font-size:12px;color:#6D6A5F;">
+                <a href="mailto:${supportEmail}" style="color:#6A8D52;text-decoration:none;">${supportEmail}</a>
                 &nbsp;·&nbsp;
-                <a href="${siteUrl}" style="color:#38B6FF;text-decoration:none;">esmasqueunpinguino.cl</a>
+                <a href="${siteUrl}" style="color:#6A8D52;text-decoration:none;">salvemosquirilluca.cl</a>
               </p>
             </td>
           </tr>

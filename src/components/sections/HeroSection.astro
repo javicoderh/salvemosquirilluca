@@ -1,15 +1,10 @@
 ---
 import { campaignConfig } from "../../content/campaign";
-import logo from "../../assets/logo_pinguino_humboldt_circulo.png";
-import pinguinosVideo from "../../assets/pinguinos.mp4";
-import pinguinosVideoMobile from "../../assets/pinguinos-mobile.mp4";
-import carouselImage from "../../assets/gallery/large/DSC06464.webp";
 import ButtonLink from "../ui/ButtonLink.astro";
 import PenguinSmartGallery from "../campaign/PenguinSmartGallery.vue";
 import Countdown from "../ui/Countdown.astro";
 import MultiModalCarousel, { type MultiModalCarouselItem } from "../ui/MultiModalCarousel.astro";
 import Section from "../ui/Section.astro";
-import { listPublicCarouselSlides } from "../../lib/security/carousel-storage";
 
 interface Props {
   initialCount?: number;
@@ -24,33 +19,134 @@ const {
   initialChileanCount = 0,
   initialForeignCount = 0
 } = Astro.props;
-const heroCarouselItems: MultiModalCarouselItem[] = [
+const carouselItemsUnordered: MultiModalCarouselItem[] = [
   {
-    source: carouselImage.src,
-    type: "image",
-    name: "Pingüino de Humboldt en su hábitat",
-    description: "Registro visual de la campaña ciudadana por la protección de la especie."
-  },
-  {
-    source: pinguinosVideo,
-    type: "video",
-    name: "La colonia en movimiento",
-    description: "Video de apoyo para mostrar el comportamiento y presencia del pingüino de Humboldt."
-  },
-  {
-    source: carouselImage.src,
+    source: "/assets/quirilluca/OTR-01_comunidad_manifestacion_salvemos_quirilluca.jpg",
     type: "event",
-    name: "Encuentro ciudadano por el pingüino",
-    date: "8 de junio de 2026",
-    address: "Chile, costa de la corriente de Humboldt",
-    description: "Actividad territorial para informar, compartir materiales y sumar apoyo ciudadano."
+    name: "La comunidad se moviliza contra Maratué",
+    date: "3 de junio de 2019",
+    address: "Gobierno Regional de Valparaíso",
+    description: "Vecinas y vecinos organizados manifestaron su rechazo al proyecto y anunciaron que buscarían revertir su aprobación.",
+    href: "https://www.observador.cl/movimiento-salvemos-quirilluca-buscara-revertir-aprobacion-de-proyecto-inmobiliario/"
+  },
+  {
+    source: "/assets/quirilluca/accion-voceria.jpg",
+    type: "event",
+    name: "Salvemos Quirilluca exige proteger al menos 250 hectáreas",
+    date: "14 de abril de 2026",
+    address: "Vocería en Radio Universidad de Valparaíso",
+    description: "La organización respondió a la decisión sobre Maratué solicitando un área de resguardo ecológico mayor. Foto: RVL.",
+    href: "https://rvl.uv.cl/noticias/11048-maratue-vocero-de-salvemos-quirilluca-ricardo-quero-plantea-que-deben-resguardarse-al-menos-250-hectareas"
+  },
+  {
+    source: "/assets/quirilluca/accion-02.jpg",
+    type: "event",
+    name: "La defensa continuará ante tribunales ambientales",
+    date: "14 de abril de 2026",
+    address: "Acción jurídica y territorial",
+    description: "La organización anunció que buscará una revisión profunda del proyecto. Imagen de contexto regional, 2018.",
+    href: "https://www.eldinamo.cl/economia/negocios-economia/2026/04/14/tras-aprobacion-de-maratue-la-ultima-carta-de-los-defensores-ambientales-para-frenar-el-proyecto-inmobiliario-en-puchuncavi/"
+  },
+  {
+    source: "/assets/quirilluca/accion-03.jpg",
+    type: "event",
+    name: "Organizaciones se manifestaron frente a La Moneda",
+    date: "6 de marzo de 2026",
+    address: "Santiago",
+    description: "Organizaciones ambientales exigieron una decisión informada y solicitaron audiencia presidencial. Imagen de contexto regional, 2018.",
+    href: "https://eldesconcierto.cl/2026/03/06/vecinos-de-puchuncavi-en-alerta-por-mega-proyecto-inmobiliario-cuya-votacion-se-aplazo-deberan-decidir-ministros-de-kast"
+  },
+  {
+    source: "/assets/quirilluca/accion-04.jpg",
+    type: "event",
+    name: "Quirilluca pidió presencia ciudadana",
+    date: "16 de diciembre de 2025",
+    address: "Convocatoria de organizaciones ambientales",
+    description: "La comunidad llamó a acompañar la discusión ministerial y defender ocho años de trabajo territorial. Imagen de contexto regional, 2018.",
+    href: "https://rvl.uv.cl/noticias/10591-ricardo-quero-analiza-votacion-proteger-acantilados-de-quirilluca-o-construir-proyecto-inmobiliario"
+  },
+  {
+    source: "/assets/quirilluca/accion-05.jpg",
+    type: "event",
+    name: "La organización anunció acciones judiciales",
+    date: "23 de noviembre de 2024",
+    address: "Puchuncaví",
+    description: "Salvemos Quirilluca informó recursos para impugnar la aprobación ambiental del megaproyecto. Imagen de contexto regional, 2018.",
+    href: "https://www.biobiochile.cl/noticias/nacional/region-de-valparaiso/2024/11/23/agrupacion-inicia-arremetida-judicial-para-impedir-mega-proyecto-inmobiliario-maratue-en-puchuncavi.shtml"
+  },
+  {
+    source: "/assets/quirilluca/accion-06.jpg",
+    type: "event",
+    name: "La propuesta de Santuario llegó al Congreso",
+    date: "13 de julio de 2020",
+    address: "Comisión de Medio Ambiente",
+    description: "El movimiento expuso la necesidad de proteger los acantilados y cuestionó la autorización de Maratué. Imagen de contexto regional, 2018.",
+    href: "https://diariolaquinta.cl/2020/07/13/salvemos-quirilluca-pide-que-zona-sea-declarada-santuario-de-la-naturaleza-y-se-invalide-construccion-de-proyecto-maratue/"
+  },
+  {
+    source: "/assets/quirilluca/accion-07.jpg",
+    type: "event",
+    name: "La participación ciudadana dio origen al movimiento",
+    date: "Desde 2017",
+    address: "Horcón y Puchuncaví",
+    description: "Vecinas y vecinos se organizaron durante la evaluación ambiental para presentar observaciones. Imagen de contexto regional, 2018.",
+    href: "https://www.revistaanfibia.cl/las-arenas-abiertas-de-quirilluca/"
+  },
+  {
+    source: "/assets/quirilluca/accion-08.jpg",
+    type: "event",
+    name: "Asambleas territoriales ampliaron la defensa ambiental",
+    date: "Septiembre de 2018",
+    address: "Quintero, Puchuncaví y Horcón",
+    description: "La movilización socioambiental fortaleció redes y extendió asambleas hacia Puchuncaví y Horcón. Foto: Frente Fotográfico.",
+    href: "https://olca.cl/articulo/nota.php?id=107421"
+  },
+  {
+    source: "/assets/quirilluca/accion-09.jpg",
+    type: "event",
+    name: "La comunidad documenta la biodiversidad amenazada",
+    date: "Julio de 2026",
+    address: "Acantilados de Quirilluca",
+    description: "El registro ciudadano mantiene visible el valor del bosque, la fauna y los acantilados. Imagen de contexto regional, 2018.",
+    href: "https://eldesconcierto.cl/medio-ambiente/piqueros-flores-y-bellotos-del-norte-conoce-la-biodiversidad-que-habita-los-acantilados-quirilluca-puchuncavi-n5458221"
+  },
+  {
+    source: "/assets/quirilluca/LSQ-04_proyecto_masterplan_01.jpg",
+    type: "event",
+    kicker: "Plano de referencia · Maratué",
+    name: "Vista conceptual del desarrollo urbano",
+    date: "Material publicado en abril de 2026",
+    address: "Fuente visual: Maratué / Ladera Sur",
+    description: "Representación del proponente para un desarrollo de 14.180 viviendas en 1.045 hectáreas, proyectado en etapas durante 45 años. Es una visualización conceptual, no una fotografía de obras ejecutadas.",
+    href: "https://laderasur.com/articulo/proyecto-maratue-es-aprobado-y-organizaciones-locales-se-preparan-para-abordar-proteccion-de-quirilluca/"
+  },
+  {
+    source: "/assets/quirilluca/LSQ-07_proyecto_masterplan_02.jpg",
+    type: "event",
+    kicker: "Plano de referencia · Maratué",
+    name: "Plan maestro presentado por el proyecto",
+    date: "Material publicado en abril de 2026",
+    address: "Fuente visual: Maratué / Ladera Sur",
+    description: "El esquema identifica áreas urbanizadas y elementos anunciados por el titular: accesos, senderos, corazones verdes, paisaje nativo, humedales y un puente verde. Corresponde a la propuesta del proyecto.",
+    href: "https://laderasur.com/articulo/proyecto-maratue-es-aprobado-y-organizaciones-locales-se-preparan-para-abordar-proteccion-de-quirilluca/"
+  },
+  {
+    source: "/assets/quirilluca/LSQ-08_proyecto_puente_verde.jpg",
+    type: "event",
+    kicker: "Plano de referencia · Maratué",
+    name: "Representación del llamado puente verde",
+    date: "Material publicado en abril de 2026",
+    address: "Fuente visual: Maratué / Ladera Sur",
+    description: "La imagen muestra la propuesta conceptual de una conexión peatonal y vegetal sobre la vía entre Puchuncaví y la costa. No constituye por sí sola una garantía de ejecución o desempeño ambiental.",
+    href: "https://laderasur.com/articulo/proyecto-maratue-es-aprobado-y-organizaciones-locales-se-preparan-para-abordar-proteccion-de-quirilluca/"
   }
 ];
-const configuredCarouselItems = await listPublicCarouselSlides().catch((error) => {
-  console.error("hero-carousel-load-failed", error);
-  return [];
-});
-const carouselItems = configuredCarouselItems.length > 0 ? configuredCarouselItems : heroCarouselItems;
+const [firstAction, ...remainingItems] = carouselItemsUnordered;
+const planItems = remainingItems.slice(-3);
+const otherActionItems = remainingItems.slice(0, -3);
+const carouselItems = firstAction
+  ? [firstAction, ...planItems, ...otherActionItems]
+  : carouselItemsUnordered;
 ---
 
 <Section size="hero" class="overflow-visible" id="inicio">
@@ -66,45 +162,34 @@ const carouselItems = configuredCarouselItems.length > 0 ? configuredCarouselIte
       <source src={hero.videoSrc} />
     </video>
   ) : (
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,182,255,0.18),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(255,162,209,0.18),transparent_22%),linear-gradient(180deg,rgba(0,151,178,0.06),transparent_55%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(106,141,82,0.13),transparent_32%),radial-gradient(circle_at_80%_10%,rgba(169,104,69,0.14),transparent_22%),linear-gradient(180deg,rgba(49,91,91,0.06),transparent_55%)]"></div>
   )}
   <div data-hero-sentinel class="absolute inset-x-0 top-0 h-full" aria-hidden="true"></div>
   <div class="noise-overlay"></div>
   <div class="relative z-10 overflow-visible rounded-[2rem] border border-white/12 bg-black/20">
-    <video
-      data-hero-video
-      class="absolute inset-0 h-full w-full object-cover opacity-75 md:opacity-44"
-      autoplay
-      muted
-      playsinline
-      aria-hidden="true"
-    >
-      <source src={pinguinosVideoMobile} type="video/mp4" media="(max-width: 767px)" />
-      <source src={pinguinosVideo} type="video/mp4" />
-    </video>
-    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,7,11,0.9)_0%,rgba(5,7,11,0.76)_42%,rgba(5,7,11,0.84)_100%)]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_80%_20%,rgba(56,182,255,0.12),transparent_22%)]"></div>
+    <img src="/assets/quirilluca/LSQ-01_paisaje_acantilados_portada.jpg" alt="Acantilados de Quirilluca" class="absolute inset-0 h-full w-full object-cover opacity-75 md:opacity-55" />
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,11,7,0.92)_0%,rgba(17,19,13,0.76)_42%,rgba(9,11,7,0.86)_100%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(215,192,155,0.08),transparent_18%),radial-gradient(circle_at_80%_20%,rgba(106,141,82,0.09),transparent_22%)]"></div>
     <button
       type="button"
       data-hero-video-play
-      aria-label="Reproducir video con sonido"
+      aria-label="Ver imagen de Quirilluca"
       class="focus-ring absolute right-4 top-4 z-20 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/24 bg-black/45 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_12px_30px_rgba(0,0,0,0.32)] backdrop-blur-md transition duration-200 hover:-translate-y-0.5 hover:scale-105 hover:border-campaign-warm hover:bg-black/70 hover:text-campaign-warm md:right-6 md:top-6"
     >
       <span class="absolute inset-0 rounded-full animate-ping bg-white/8 [animation-duration:2.4s]"></span>
       <svg aria-hidden="true" viewBox="0 0 24 24" class="relative z-10 h-6 w-6 fill-current">
-        <path d="M8 6.5v11l9-5.5-9-5.5Z"></path>
+        <path d="m12 4 1.8 5.2L19 11l-5.2 1.8L12 18l-1.8-5.2L5 11l5.2-1.8L12 4Z"></path>
       </svg>
     </button>
 
     <div class="relative grid items-start gap-4 p-3 pt-3 sm:gap-8 sm:p-6 sm:pt-14 md:p-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-12 lg:p-10">
       <div>
         <div class="mb-2 flex flex-col items-start gap-3 sm:mb-4 sm:flex-row sm:items-center sm:gap-4 md:mb-10 md:gap-5">
-          <div class="relative isolate flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border border-white/16 bg-white/7 shadow-[0_28px_90px_rgba(0,0,0,0.45)] sm:h-32 sm:w-32 md:h-44 md:w-44">
-            <div class="absolute inset-0 bg-[radial-gradient(circle,transparent_48%,rgba(5,7,11,0.18)_74%,rgba(5,7,11,0.55)_100%)]"></div>
+          <div class="logo-glow-shell logo-glow-shell--hero relative isolate flex h-28 w-28 items-center justify-center sm:h-36 sm:w-36 md:h-48 md:w-48">
             <img
-              src={logo.src}
-              alt="Logo circular de la campaña del pingüino de Humboldt"
-              class="relative z-10 h-24 w-24 object-contain drop-shadow-[0_10px_24px_rgba(0,0,0,0.45)] sm:h-28 sm:w-28 md:h-36 md:w-36"
+              src="/assets/quirilluca/logo-salvemos-quirilluca.svg"
+              alt="Logo de Salvemos Quirilluca"
+              class="logo-glow-image relative z-10 h-full w-full object-contain brightness-0 invert"
             />
           </div>
           <p class="max-w-xs text-xs font-semibold uppercase tracking-[0.16em] text-campaign-warm sm:text-sm md:max-w-sm md:tracking-[0.18em]">
@@ -129,7 +214,7 @@ const carouselItems = configuredCarouselItems.length > 0 ? configuredCarouselIte
         </p>
 
         <div class="mt-4 flex gap-3 sm:mt-6 md:mt-8 md:gap-4">
-          <ButtonLink href="/carta" label={hero.buttons.readLetter} variant="secondary" class="flex-1 px-4 text-[0.82rem] text-center md:flex-none md:px-6 md:text-[0.95rem]" />
+          <ButtonLink href="/pinguino-de-humboldt" label={hero.buttons.readLetter} variant="secondary" class="flex-1 px-4 text-[0.82rem] text-center md:flex-none md:px-6 md:text-[0.95rem]" />
           <ButtonLink href="/firma" label={hero.buttons.signNow} class="flex-1 px-4 text-[0.82rem] text-center md:flex-none md:px-6 md:text-[0.95rem]" />
         </div>
 
@@ -142,7 +227,7 @@ const carouselItems = configuredCarouselItems.length > 0 ? configuredCarouselIte
 
         <!-- Mobile: static signature counter + CTA -->
         <div hidden aria-hidden="true" class="mt-4 md:hidden" style="display: none !important;">
-          <div class="rounded-[1.4rem] border border-white/14 bg-[#070b15] px-4 py-4 shadow-[0_12px_40px_rgba(0,0,0,0.38)]">
+          <div class="rounded-[1.4rem] border border-campaign-stone/15 bg-campaign-surface px-4 py-4 shadow-[0_12px_40px_rgba(0,0,0,0.38)]">
             <div class="flex items-center gap-3">
               <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/12 bg-white/6 text-campaign-sky">
                 <svg aria-hidden="true" viewBox="0 0 24 24" class="h-3.5 w-3.5 fill-current">
@@ -169,7 +254,7 @@ const carouselItems = configuredCarouselItems.length > 0 ? configuredCarouselIte
               data-analytics-event="cta_click"
               data-analytics-label={hero.buttons.signNow}
               data-analytics-context="hero_mobile_static_cta"
-              class="focus-ring mt-4 flex min-h-12 w-full items-center justify-center rounded-full border border-black/55 bg-campaign-sky px-6 text-sm font-extrabold uppercase tracking-[0.16em] text-white shadow-[0_8px_30px_rgba(56,182,255,0.3)]"
+              class="focus-ring mt-4 flex min-h-12 w-full items-center justify-center rounded-full border border-black/55 bg-campaign-sky px-6 text-sm font-extrabold uppercase tracking-[0.16em] text-campaign-black shadow-[0_8px_30px_rgba(106,141,82,0.2)]"
             >
               {hero.buttons.signNow}
             </a>
@@ -210,28 +295,72 @@ const carouselItems = configuredCarouselItems.length > 0 ? configuredCarouselIte
 
       <div class="grid gap-4 md:grid-cols-3">
         {ecosystem.pillars.map((pillar) => (
-          <article class="rounded-3xl border border-white/12 bg-black/18 p-5">
-            <div class="flex items-center gap-3">
-              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-campaign-sky/14 text-2xl text-campaign-warm">
+          <article class="min-w-0 overflow-hidden rounded-3xl border border-white/12 bg-black/18 p-5">
+            <div class="flex min-w-0 flex-col items-start gap-3">
+              <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-campaign-sky/14 text-xl text-campaign-warm">
                 {pillar.icon}
               </div>
-              <h3 class="text-xl font-semibold text-white">{pillar.title}</h3>
+              <h3 class="w-full min-w-0 break-words text-lg font-semibold leading-tight text-white">{pillar.title}</h3>
             </div>
-            <p class="mt-3 text-sm leading-6 text-campaign-text-muted">{pillar.description}</p>
+            <p class="mt-3 break-words text-sm leading-6 text-campaign-text-muted">{pillar.description}</p>
           </article>
         ))}
       </div>
     </div>
 
     <div class="mt-8 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
-      <div class="flex w-full flex-nowrap items-center justify-center gap-1 font-medium text-campaign-text-muted sm:justify-start sm:gap-3">
-        <span class="rounded-full border border-white/12 bg-white/5 px-1.5 py-0.5 text-[10px] text-white sm:px-4 sm:py-2 sm:text-base">Pingüino</span>
-        <span class="shrink-0 text-[10px] text-campaign-sky sm:text-lg">→</span>
-        <span class="rounded-full border border-white/12 bg-white/5 px-1.5 py-0.5 text-[10px] text-white sm:px-4 sm:py-2 sm:text-base">Océano</span>
-        <span class="shrink-0 text-[10px] text-campaign-sky sm:text-lg">→</span>
-        <span class="rounded-full border border-white/12 bg-white/5 px-1.5 py-0.5 text-[10px] text-white sm:px-4 sm:py-2 sm:text-base">Personas</span>
-        <span class="shrink-0 text-[10px] text-campaign-sky sm:text-lg">→</span>
-        <span class="rounded-full border border-white/12 bg-white/5 px-1.5 py-0.5 text-[10px] text-white sm:px-4 sm:py-2 sm:text-base">Futuro</span>
+      <div class="flex w-full flex-nowrap items-center justify-center gap-1 text-campaign-text-muted sm:justify-start sm:gap-3">
+        <span
+          class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-campaign-sky/25 bg-campaign-sky/10 text-campaign-sky sm:h-14 sm:w-14"
+          role="img"
+          aria-label="Flora"
+          title="Flora"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-current stroke-[1.8]">
+            <path d="M5 20c0-7 4.5-12.5 14-16 0 8.5-3.6 13-10.5 13.1" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M5 20c3.2-4.2 6.6-7.3 10.4-9.4" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span aria-hidden="true" class="shrink-0 text-sm text-campaign-sky sm:text-lg">→</span>
+        <span
+          class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-campaign-warm/25 bg-campaign-warm/10 text-campaign-warm sm:h-14 sm:w-14"
+          role="img"
+          aria-label="Fauna"
+          title="Fauna"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-current stroke-[1.7]">
+            <ellipse cx="12" cy="15.5" rx="4.5" ry="3.8"></ellipse>
+            <circle cx="6.5" cy="10" r="1.7"></circle>
+            <circle cx="10.3" cy="7.4" r="1.7"></circle>
+            <circle cx="13.7" cy="7.4" r="1.7"></circle>
+            <circle cx="17.5" cy="10" r="1.7"></circle>
+          </svg>
+        </span>
+        <span aria-hidden="true" class="shrink-0 text-sm text-campaign-sky sm:text-lg">→</span>
+        <span
+          class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-campaign-clay/30 bg-campaign-clay/12 text-campaign-stone sm:h-14 sm:w-14"
+          role="img"
+          aria-label="Personas"
+          title="Personas"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-current stroke-[1.7]">
+            <circle cx="9" cy="8" r="3"></circle>
+            <circle cx="17" cy="9" r="2.3"></circle>
+            <path d="M3.5 20c.4-4 2.4-6 5.5-6s5.1 2 5.5 6M14 15c3.8-.8 6.1.9 6.5 4.5" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <span aria-hidden="true" class="shrink-0 text-sm text-campaign-sky sm:text-lg">→</span>
+        <span
+          class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-campaign-stone/25 bg-campaign-stone/10 text-campaign-stone sm:h-14 sm:w-14"
+          role="img"
+          aria-label="Planeta"
+          title="Planeta"
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" class="h-6 w-6 fill-none stroke-current stroke-[1.7]">
+            <circle cx="12" cy="12" r="8.5"></circle>
+            <path d="M3.8 9.5h16.4M3.8 14.5h16.4M12 3.5c2 2.2 3 5 3 8.5s-1 6.3-3 8.5M12 3.5c-2 2.2-3 5-3 8.5s1 6.3 3 8.5" stroke-linecap="round"></path>
+          </svg>
+        </span>
       </div>
 
       <div class="rounded-[1.6rem] border border-white/12 bg-black/18 px-5 py-4">
@@ -240,7 +369,7 @@ const carouselItems = configuredCarouselItems.length > 0 ? configuredCarouselIte
         </p>
         <p class="mt-3 text-lg font-semibold text-white">Antes del <span class="whitespace-nowrap">{dates.signatureDeadlineLabel}</span></p>
         <p class="mt-3 max-w-md text-sm leading-6 text-campaign-text-muted">
-          Leer, firmar y compartir son las tres acciones clave de esta fase.
+          Conocer, cuidar y participar son las tres acciones clave para defender Quirilluca.
         </p>
       </div>
     </div>

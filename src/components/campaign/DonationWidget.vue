@@ -5,14 +5,14 @@ type Currency = "CLP" | "USD";
 type Lang = "es" | "en";
 
 const AMOUNTS_CLP = [
-  { value: 1000, impact: "Un café por el pingüino" },
+  { value: 1000, impact: "Un aporte para Quirilluca" },
   { value: 2500, impact: "Apoyo básico" },
   { value: 5000, impact: "Apoyo completo" },
   { value: 10000, impact: "Guardián Humboldt" },
 ];
 
 const AMOUNTS_USD = [
-  { value: 1, impactEs: "Un café por el pingüino", impactEn: "A coffee for the penguin" },
+  { value: 1, impactEs: "Un aporte para Quirilluca", impactEn: "A contribution for Quirilluca" },
   { value: 3, impactEs: "Apoyo básico", impactEn: "Basic support" },
   { value: 5, impactEs: "Apoyo completo", impactEn: "Full support" },
   { value: 10, impactEs: "Guardián Humboldt", impactEn: "Humboldt Guardian" },
@@ -284,7 +284,7 @@ loadStats();
       type="button"
       @click="onSubmit"
       :disabled="loading"
-      class="mt-5 flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-black/40 bg-campaign-warm px-6 py-3 text-sm font-black uppercase tracking-[0.1em] text-black shadow-[0_12px_40px_rgba(255,162,0,0.28),inset_0_1px_0_rgba(255,255,255,0.35)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+      class="mt-5 flex min-h-12 w-full items-center justify-center gap-2 rounded-full border border-black/40 bg-campaign-warm px-6 py-3 text-sm font-black uppercase tracking-[0.1em] text-black shadow-[0_12px_40px_rgba(208,164,87,0.28),inset_0_1px_0_rgba(255,255,255,0.35)] transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
     >
       <svg v-if="!loading" aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 fill-current">
         <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z" />

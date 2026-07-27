@@ -6,7 +6,7 @@ const kindTone: Record<SciencePaperRecord["kind"], string> = {
   "Artículo científico": "bg-campaign-sky/12 text-campaign-sky border-campaign-sky/20",
   "Informe técnico": "bg-campaign-ocean/14 text-campaign-ocean border-campaign-ocean/20",
   "Informe final": "bg-campaign-warm/14 text-campaign-warm border-campaign-warm/20",
-  "Manual técnico": "bg-campaign-blush/14 text-campaign-blush border-campaign-blush/20",
+  "Manual técnico": "bg-campaign-stone/14 text-campaign-stone border-campaign-stone/20",
   "Instrumento público": "bg-campaign-sky/14 text-campaign-sky border-campaign-sky/20"
 };
 
@@ -146,7 +146,7 @@ const englishCount = sciencePapers.filter((paper) => paper.language === "Inglés
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            class="mt-2 inline-flex text-sm font-semibold text-campaign-warm transition hover:text-[#FFF1A8]"
+            class="mt-2 inline-flex text-sm font-semibold text-campaign-warm transition hover:text-campaign-stone"
             data-science-paper-doi
           ></a>
         </div>
@@ -161,7 +161,7 @@ const englishCount = sciencePapers.filter((paper) => paper.language === "Inglés
           href="#"
           target="_blank"
           rel="noopener noreferrer"
-          class="focus-ring rounded-full border border-black/45 bg-campaign-warm px-5 py-3 text-sm font-black uppercase tracking-[0.08em] text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] transition hover:border-black/55 hover:bg-[#FFF1A8]"
+          class="focus-ring rounded-full border border-black/45 bg-campaign-warm px-5 py-3 text-sm font-black uppercase tracking-[0.08em] text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] transition hover:border-black/55 hover:brightness-110"
           data-science-paper-open-pdf
         >
           Abrir PDF
@@ -394,7 +394,7 @@ const englishCount = sciencePapers.filter((paper) => paper.language === "Inglés
   .science-paper-modal__backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(2, 5, 10, 0.82);
+    background: rgba(9, 11, 7, 0.86);
     backdrop-filter: blur(10px);
   }
 
@@ -422,7 +422,7 @@ const englishCount = sciencePapers.filter((paper) => paper.language === "Inglés
     height: 2.5rem;
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 999px;
-    background: rgba(5, 7, 11, 0.68);
+    background: rgba(9, 11, 7, 0.72);
     color: #fff;
     font-size: 1.35rem;
     cursor: pointer;

@@ -2,10 +2,11 @@
 import { campaignConfig } from "../../content/campaign";
 import { createFormToken } from "../../lib/security/form-token";
 import { isSecurityConfigured, isServerStorageConfigured, securityConfig } from "../../lib/security/config";
+import { isQuirillucaFallbackEnabled } from "../../lib/quirilluca/fallback";
 
 const { signatureForm } = campaignConfig;
-const isConfigured = isSecurityConfigured && isServerStorageConfigured;
-const formToken = isConfigured ? await createFormToken("signature_submit") : null;
+const isConfigured = isQuirillucaFallbackEnabled || (isSecurityConfigured && isServerStorageConfigured);
+const formToken = isSecurityConfigured ? await createFormToken("signature_submit") : null;
 ---
 
 <div class="surface-panel rounded-[2rem] p-7 md:p-8">
@@ -129,7 +130,7 @@ const formToken = isConfigured ? await createFormToken("signature_submit") : nul
           name="legal_nature"
           required
           data-validate="legal_nature"
-          class="focus-ring min-h-12 rounded-2xl border border-white/14 bg-[#0f1822] px-4 py-3 text-white"
+          class="focus-ring min-h-12 rounded-2xl border border-campaign-stone/15 bg-campaign-surface-strong px-4 py-3 text-white"
         >
           <option value="">Selecciona una opción</option>
           <option value="Persona natural">Persona natural</option>
@@ -213,7 +214,7 @@ const formToken = isConfigured ? await createFormToken("signature_submit") : nul
         />
         <span>
           {signatureForm.fields.consent}{" "}
-          <a href="/privacidad" class="font-semibold text-campaign-warm underline underline-offset-4 hover:text-[#FFF1A8]">
+          <a href="/privacidad" class="font-semibold text-campaign-warm underline underline-offset-4 hover:text-campaign-stone">
             política de privacidad
           </a>
           .
@@ -257,7 +258,7 @@ const formToken = isConfigured ? await createFormToken("signature_submit") : nul
       <button
         type="submit"
         data-signature-submit
-        class="focus-ring button-text-outline inline-flex min-h-12 items-center justify-center rounded-full border border-black/55 bg-campaign-sky px-6 py-3 text-[0.95rem] font-extrabold uppercase tracking-[0.08em] text-white shadow-[0_18px_60px_rgba(56,182,255,0.3),inset_0_1px_0_rgba(255,255,255,0.24)] transition hover:bg-[#63C6FF]"
+        class="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-black/55 bg-campaign-sky px-6 py-3 text-[0.95rem] font-extrabold uppercase tracking-[0.08em] text-campaign-black shadow-[0_18px_60px_rgba(106,141,82,0.2),inset_0_1px_0_rgba(255,255,255,0.18)] transition hover:brightness-105"
       >
         {signatureForm.submitLabel}
       </button>
@@ -589,7 +590,7 @@ const formToken = isConfigured ? await createFormToken("signature_submit") : nul
       } finally {
         if (submitButton instanceof HTMLButtonElement) {
           submitButton.disabled = false;
-          submitButton.textContent = "Firmar la carta";
+          submitButton.textContent = "Sumarme a Salvemos Quirilluca";
         }
       }
     });

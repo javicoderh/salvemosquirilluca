@@ -1,7 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import HeroSection from "../components/sections/HeroSection.astro";
-import ExtensionBanner from "../components/sections/ExtensionBanner.astro";
 import ProblemSection from "../components/sections/ProblemSection.astro";
 import ConversionSection from "../components/sections/ConversionSection.astro";
 import DonationSection from "../components/sections/DonationSection.astro";
@@ -14,19 +13,18 @@ const knowledgeHighlights = campaignConfig.knowledgeHub.slice(0, 4);
 
 <MainLayout
   path="/"
-  title="Pingüino de Humboldt en Chile | Ciencia, carta y apoyo ciudadano"
-  description="Conoce por qué el pingüino de Humboldt importa para el ecosistema marino de Chile, revisa la carta científica y apoya esta causa con una participación ciudadana informada."
-  keywords={["pingüino de Humboldt", "protección del pingüino de Humboldt", "carta científica", "Monumento Natural", "participación ciudadana"]}
+  title="Salvemos Quirilluca | Territorio vivo"
+  description="Conoce los Acantilados de Quirilluca, la amenaza que enfrenta este territorio y cómo sumarte a su defensa comunitaria."
+  keywords={["Salvemos Quirilluca", "Acantilados de Quirilluca", "Puchuncaví", "protección territorial", "participación ciudadana"]}
 >
   <HeroSection />
-  <ExtensionBanner />
   <ProblemSection />
   <Section>
     <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
       <SectionHeading
         eyebrow="Aprende"
         title="Un sitio pensado para informar, contextualizar y sumar apoyo"
-        body="Además de la carta, reunimos páginas que explican la especie, su ecosistema, las amenazas que enfrenta y las preguntas más frecuentes de la campaña."
+        body="Reunimos páginas para conocer el territorio, comprender la amenaza que enfrenta Quirilluca y participar con información pública y verificable."
       />
       <div class="grid gap-4 md:grid-cols-2">
         {knowledgeHighlights.map((item) => (

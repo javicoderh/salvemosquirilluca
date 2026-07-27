@@ -3,8 +3,9 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Section from "../components/ui/Section.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+import { campaignConfig } from "../content/campaign";
 
-const contactEmail = "pinguinodehumboldtmn@gmail.com";
+const contactEmail = campaignConfig.site.contactEmail;
 const breadcrumbItems = [
   { name: "Inicio", path: "/" },
   { name: "Privacidad", path: "/privacidad" }
@@ -13,8 +14,8 @@ const breadcrumbItems = [
 
 <MainLayout
   path="/privacidad"
-  title="Política de privacidad | Es más que un pingüino"
-  description="Política de privacidad y tratamiento de datos de la campaña Es más que un pingüino."
+  title="Política de privacidad | Salvemos Quirilluca"
+  description="Política de privacidad y tratamiento de datos de Salvemos Quirilluca."
   hideFloatingCta={true}
   keywords={["privacidad", "tratamiento de datos", "firma campaña", "datos personales"]}
   breadcrumbItems={breadcrumbItems}
@@ -36,7 +37,7 @@ const breadcrumbItems = [
           <section>
             <h2 class="text-xl font-semibold text-white">1. Responsable del tratamiento</h2>
             <p class="mt-3">
-              La campaña <span class="font-semibold text-white">Es más que un pingüino</span> trata los datos
+              Salvemos Quirilluca trata los datos
               personales que se ingresan en este sitio con el único fin de gestionar las firmas, respaldar la
               campaña ciudadana y, cuando corresponda, mantener comunicación sobre su avance.
             </p>
@@ -73,7 +74,7 @@ const breadcrumbItems = [
             <ul class="mt-3 list-disc space-y-2 pl-5">
               <li>Registrar y gestionar firmas válidas de la campaña.</li>
               <li>Evitar duplicados, fraude o abuso del formulario.</li>
-              <li>Consolidar respaldo ciudadano a la carta y a sus objetivos públicos.</li>
+              <li>Gestionar apoyos ciudadanos para la protección de Quirilluca.</li>
               <li>Enviar actualizaciones solo a quienes lo autoricen expresamente.</li>
               <li>Mantener trazabilidad operativa y resguardo básico del sistema.</li>
             </ul>
@@ -111,7 +112,7 @@ const breadcrumbItems = [
             <h2 class="text-xl font-semibold text-white">6. Compartición de datos</h2>
             <p class="mt-3">
               Los datos no se recopilan para comercialización ni se venden a terceros. Solo podrán usarse en el marco
-              de la campaña, su operación técnica, su respaldo organizativo y los fines públicos vinculados a la carta.
+              de Salvemos Quirilluca, su operación técnica y sus fines públicos de protección territorial.
             </p>
           </section>
 

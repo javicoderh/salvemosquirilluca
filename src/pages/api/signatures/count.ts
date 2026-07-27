@@ -3,11 +3,17 @@ import {
   emergencySignatureCounterFallback,
   getCachedPublicSignatureBreakdown
 } from "../../../lib/security/storage";
+import { isQuirillucaFallbackEnabled, getFallbackSignatureCount } from "../../../lib/quirilluca/fallback";
 
 export const prerender = false;
 
 export const GET: APIRoute = async () => {
   try {
+    if (isQuirillucaFallbackEnabled) {
+      return new Response(JSON.stringify(getFallbackSignatureCount()), {
+        headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" }
+      });
+    }
     const payload = await getCachedPublicSignatureBreakdown();
     return new Response(JSON.stringify(payload), {
       headers: {

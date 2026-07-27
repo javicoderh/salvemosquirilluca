@@ -25,7 +25,6 @@ await expectIncludes("src/pages/robots.txt.ts", [
 ]);
 
 await expectIncludes("src/pages/sitemap.xml.ts", [
-  "/carta",
   "/firma",
   "/transparencia",
   "/contacto",
@@ -60,8 +59,8 @@ await expectIncludes("src/middleware.ts", [
 ]);
 
 await expectIncludes("src/content/campaign.ts", [
-  'publicLetterPdf: "/assets/carta-abierta-pinguino-humboldt.pdf"',
-  'contactEmail: "esmasqueunpinguino@gmail.com"'
+  'publicLetterPdf: ""',
+  'contactEmail: "contacto@salvemosquirilluca.cl"'
 ]);
 
 await expectFile("PRODUCTION_READINESS_AUDIT.md");

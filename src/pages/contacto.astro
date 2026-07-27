@@ -29,10 +29,10 @@ const publicContactLinks = contactLinks.filter((item) => /^https?:\/\//.test(ite
 
 <MainLayout
   path="/contacto"
-  title="Contacto de la campaña | Es más que un pingüino"
-  description="Canales de contacto, correo y redes de Es más que un pingüino para consultas, coordinación y difusión responsable."
+  title="Contacto | Salvemos Quirilluca"
+  description="Canales de contacto de Salvemos Quirilluca para consultas, coordinación y participación comunitaria."
   hideFloatingCta={true}
-  keywords={["contacto pingüino de Humboldt", "correo campaña", "redes sociales", "consultas"]}
+  keywords={["contacto Quirilluca", "Salvemos Quirilluca", "redes sociales", "consultas"]}
   breadcrumbItems={breadcrumbItems}
   pageType="ContactPage"
 >
@@ -41,7 +41,7 @@ const publicContactLinks = contactLinks.filter((item) => /^https?:\/\//.test(ite
     <SectionHeading
       eyebrow="Contacto"
       title="Conversemos y mantengamos la campaña en movimiento"
-      body="Si quieres difundir, coordinar, hacer una consulta o sumarte desde tu territorio, aquí tienes los canales directos de la campaña. Escríbenos a pinguinodehumboldtmn@gmail.com."
+      body="Si quieres difundir, coordinar, hacer una consulta o sumarte desde tu territorio, escríbenos por nuestros canales comunitarios."
       as="h1"
     />
   </Section>
@@ -62,7 +62,7 @@ const publicContactLinks = contactLinks.filter((item) => /^https?:\/\//.test(ite
               <svg
                 aria-hidden="true"
                 viewBox="0 0 24 24"
-                class={`h-10 w-10 fill-current ${item.tone} drop-shadow-[0_0_6px_rgba(56,182,255,0.95)]`}
+                class={`h-10 w-10 fill-current ${item.tone} drop-shadow-[0_0_6px_rgba(106,141,82,0.62)]`}
               >
                 <path d={item.path}></path>
               </svg>
@@ -77,10 +77,10 @@ const publicContactLinks = contactLinks.filter((item) => /^https?:\/\//.test(ite
             </svg>
           </div>
           <a
-            href="mailto:pinguinodehumboldtmn@gmail.com"
+            href={`mailto:${campaignConfig.site.contactEmail}`}
             class="focus-ring mt-3 inline-block text-base font-semibold text-white transition hover:text-campaign-warm md:text-lg"
           >
-            pinguinodehumboldtmn@gmail.com
+            {campaignConfig.site.contactEmail}
           </a>
         </div>
 

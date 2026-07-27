@@ -1,18 +1,19 @@
 ---
 import { campaignConfig } from "../../content/campaign";
-import logo from "../../assets/logo_pinguino_humboldt_circulo.png";
 
 const { navigation, site } = campaignConfig;
 ---
 
-<header class="sticky top-0 z-40 border-b border-white/10 bg-black/75 backdrop-blur-xl">
+<header class="sticky top-0 z-40 border-b border-campaign-stone/15 bg-campaign-black/88 backdrop-blur-xl">
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-6 lg:px-8">
     <a href="/" class="focus-ring inline-flex items-center gap-4 rounded-full">
-      <img
-        src={logo.src}
-        alt={`Logo de ${site.name}`}
-        class="h-14 w-14 rounded-full border border-white/16 bg-white/7 object-contain p-1.5 shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
-      />
+      <span class="logo-glow-shell logo-glow-shell--header h-16 w-16 shrink-0">
+        <img
+          src="/assets/quirilluca/logo-salvemos-quirilluca.svg"
+          alt={`Logo de ${site.name}`}
+          class="logo-glow-image h-full w-full object-contain brightness-0 invert"
+        />
+      </span>
       <div>
         <p class="text-xs font-semibold uppercase tracking-[0.16em] text-campaign-warm md:text-sm">Campaña ciudadana</p>
         <p class="text-base font-black text-white md:text-lg">{site.name}</p>
@@ -44,7 +45,7 @@ const { navigation, site } = campaignConfig;
         data-analytics-event="cta_click"
         data-analytics-label="Donar"
         data-analytics-context="site_header_desktop"
-        class="focus-ring button-text-outline inline-flex rounded-full border border-black/40 bg-campaign-warm px-5 py-3 text-sm font-black uppercase tracking-[0.08em] text-black shadow-[0_12px_36px_rgba(255,162,0,0.25),inset_0_1px_0_rgba(255,255,255,0.35)] transition hover:brightness-110"
+        class="focus-ring button-text-outline inline-flex rounded-full border border-black/40 bg-campaign-warm px-5 py-3 text-sm font-black uppercase tracking-[0.08em] text-black shadow-[0_12px_36px_rgba(208,164,87,0.25),inset_0_1px_0_rgba(255,255,255,0.35)] transition hover:brightness-110"
       >
         Donar
       </a>
@@ -52,11 +53,11 @@ const { navigation, site } = campaignConfig;
       <a
         href="/firma"
         data-analytics-event="cta_click"
-        data-analytics-label="Firmar"
+        data-analytics-label="Súmate"
         data-analytics-context="site_header_desktop"
-        class="focus-ring button-text-outline inline-flex min-h-14 rounded-full border border-black/60 bg-campaign-sky px-7 py-3.5 text-[0.95rem] font-black uppercase tracking-[0.08em] text-white shadow-[0_16px_42px_rgba(56,182,255,0.42),0_0_0_1px_rgba(125,214,255,0.24),inset_0_1px_0_rgba(255,255,255,0.3)] transition hover:-translate-y-0.5 hover:border-black/70 hover:bg-[#63C6FF] hover:shadow-[0_20px_52px_rgba(56,182,255,0.52),0_0_0_1px_rgba(160,226,255,0.36),inset_0_1px_0_rgba(255,255,255,0.36)]"
+        class="focus-ring inline-flex min-h-14 rounded-full border border-black/60 bg-campaign-sky px-7 py-3.5 text-[0.95rem] font-black uppercase tracking-[0.08em] text-campaign-black shadow-[0_16px_42px_rgba(106,141,82,0.24),0_0_0_1px_rgba(215,192,155,0.14),inset_0_1px_0_rgba(255,255,255,0.22)] transition hover:-translate-y-0.5 hover:border-black/70 hover:brightness-105 hover:shadow-[0_20px_52px_rgba(106,141,82,0.32),0_0_0_1px_rgba(215,192,155,0.2),inset_0_1px_0_rgba(255,255,255,0.26)]"
       >
-        Firmar
+        Súmate
       </a>
     </div>
 
@@ -70,7 +71,7 @@ const { navigation, site } = campaignConfig;
         </svg>
       </summary>
 
-      <div class="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(88vw,22rem)] rounded-[1.75rem] border border-white/12 bg-black/92 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+      <div class="absolute right-0 top-[calc(100%+0.75rem)] z-50 w-[min(88vw,22rem)] rounded-[1.75rem] border border-campaign-stone/15 bg-campaign-black/95 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl">
         <nav aria-label="Principal móvil">
           <ul class="grid gap-2">
             {navigation.map((item) => (
@@ -96,7 +97,7 @@ const { navigation, site } = campaignConfig;
             data-analytics-event="cta_click"
             data-analytics-label="Donar"
             data-analytics-context="site_header_mobile"
-            class="focus-ring button-text-outline flex min-h-12 items-center justify-center rounded-full border border-black/40 bg-campaign-warm px-5 py-3 text-sm font-black uppercase tracking-[0.08em] text-black shadow-[0_12px_36px_rgba(255,162,0,0.25),inset_0_1px_0_rgba(255,255,255,0.35)]"
+            class="focus-ring button-text-outline flex min-h-12 items-center justify-center rounded-full border border-black/40 bg-campaign-warm px-5 py-3 text-sm font-black uppercase tracking-[0.08em] text-black shadow-[0_12px_36px_rgba(208,164,87,0.25),inset_0_1px_0_rgba(255,255,255,0.35)]"
           >
             Donar
           </a>
@@ -104,11 +105,11 @@ const { navigation, site } = campaignConfig;
           <a
             href="/firma"
             data-analytics-event="cta_click"
-            data-analytics-label="Firmar ahora"
+            data-analytics-label="Quiero sumarme"
             data-analytics-context="site_header_mobile"
-            class="focus-ring button-text-outline flex min-h-14 items-center justify-center rounded-full border border-black/60 bg-campaign-sky px-6 py-3.5 text-[0.95rem] font-black uppercase tracking-[0.08em] text-white shadow-[0_16px_42px_rgba(56,182,255,0.42),0_0_0_1px_rgba(125,214,255,0.24),inset_0_1px_0_rgba(255,255,255,0.3)] transition hover:bg-[#63C6FF]"
+            class="focus-ring flex min-h-14 items-center justify-center rounded-full border border-black/60 bg-campaign-sky px-6 py-3.5 text-[0.95rem] font-black uppercase tracking-[0.08em] text-campaign-black shadow-[0_16px_42px_rgba(106,141,82,0.24),0_0_0_1px_rgba(215,192,155,0.14),inset_0_1px_0_rgba(255,255,255,0.22)] transition hover:brightness-105"
           >
-            Firmar ahora
+            Quiero sumarme
           </a>
         </div>
       </div>

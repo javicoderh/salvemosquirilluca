@@ -3,71 +3,16 @@ import MainLayout from "../layouts/MainLayout.astro";
 import Section from "../components/ui/Section.astro";
 import SectionHeading from "../components/ui/SectionHeading.astro";
 import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
-
-const breadcrumbItems = [
-  { name: "Inicio", path: "/" },
-  { name: "Amenazas", path: "/amenazas" }
-];
-
+const breadcrumbItems = [{ name: "Inicio", path: "/" }, { name: "La amenaza", path: "/amenazas" }];
 const threats = [
-  {
-    title: "Cambios en el ecosistema marino",
-    description:
-      "La campaña explica que variaciones en la productividad del mar y en la disponibilidad de alimento pueden repercutir en la reproducción y supervivencia de la especie."
-  },
-  {
-    title: "Influenza aviar",
-    description:
-      "El sitio incorpora este factor como parte del contexto reciente de vulnerabilidad de la fauna marina y de las colonias reproductivas."
-  },
-  {
-    title: "Eventos ambientales extremos",
-    description:
-      "Fenómenos como El Niño alteran condiciones oceanográficas y ayudan a entender por qué la conservación necesita observar procesos más amplios que una sola especie."
-  },
-  {
-    title: "Desconexión entre evidencia y decisión pública",
-    description:
-      "Cuando la información técnica no se traduce con claridad al espacio público, se dificulta reunir apoyo informado para medidas de protección."
-  }
+  ["Proyecto Maratué", "El proyecto inmobiliario contempla 1.045 hectáreas y 14.180 viviendas en un entorno de alto valor ecológico y paisajístico."],
+  ["Fragmentación del territorio", "La urbanización puede interrumpir corredores naturales, aumentar la presión sobre el suelo y alterar la relación entre acantilados, bosque y costa."],
+  ["Pérdida de biodiversidad", "La remoción de vegetación y el tránsito asociado a nuevas obras amenazan hábitats, especies nativas y procesos ecológicos locales."],
+  ["Presión sobre la vida comunitaria", "El cambio de escala territorial puede afectar accesos, paisaje, actividades tradicionales y la identidad de las comunidades cercanas."],
 ];
 ---
-
-<MainLayout
-  path="/amenazas"
-  title="Amenazas para el pingüino de Humboldt | Factores y contexto"
-  description="Resumen claro de los principales factores que hoy afectan al pingüino de Humboldt y explican por qué su protección requiere atención científica y ciudadana."
-  keywords={["amenazas pingüino de Humboldt", "influenza aviar", "El Niño", "ecosistema marino", "conservación en Chile"]}
-  breadcrumbItems={breadcrumbItems}
-  pageType="AboutPage"
->
-  <Section size="compact">
-    <Breadcrumbs items={breadcrumbItems} />
-    <SectionHeading
-      eyebrow="Contexto"
-      title="Qué amenazas explica hoy la campaña"
-      body="Esta página ordena, de forma simple, los principales factores que aparecen en el sitio para contextualizar por qué la protección del pingüino de Humboldt es un tema ecológico y ciudadano."
-      as="h1"
-    />
-  </Section>
-
-  <Section class="pt-0">
-    <div class="grid gap-4 md:grid-cols-2">
-      {threats.map((threat) => (
-        <article class="surface-panel rounded-[1.75rem] p-6">
-          <h2 class="text-xl font-bold text-white">{threat.title}</h2>
-          <p class="mt-4 text-sm leading-7 text-campaign-text-muted">{threat.description}</p>
-        </article>
-      ))}
-    </div>
-  </Section>
-
-  <Section class="pt-0">
-    <div class="surface-panel rounded-[2rem] p-8">
-      <h2 class="text-2xl font-bold text-white">Por qué esta página es útil para SEO y para usuarios</h2>
-      <p class="mt-4 text-base leading-7 text-campaign-text-muted">
-        Muchas personas llegan a este tipo de sitio buscando entender el problema antes de firmar, compartir o investigar más. Ordenar amenazas en una URL específica mejora la claridad para buscadores y hace más fácil responder preguntas informativas con contenido estable.
-      </p>
-    </div>
-  </Section>
+<MainLayout path="/amenazas" title="La amenaza | Salvemos Quirilluca" description="Conoce las presiones territoriales y ambientales que enfrenta Quirilluca." keywords={["amenaza Quirilluca", "Maratué", "Puchuncaví", "defensa territorial"]} breadcrumbItems={breadcrumbItems} pageType="AboutPage">
+  <Section size="compact"><Breadcrumbs items={breadcrumbItems} /><SectionHeading eyebrow="La amenaza" title="Lo que está en juego" body="Quirilluca enfrenta una transformación territorial de gran escala. Entender sus impactos ayuda a participar en el debate público con información." as="h1" /></Section>
+  <Section class="pt-0"><div class="grid gap-4 md:grid-cols-2">{threats.map(([title, body]) => <article class="surface-panel rounded-[1.75rem] p-6"><h2 class="text-xl font-bold text-white">{title}</h2><p class="mt-4 text-base leading-7 text-campaign-text-muted">{body}</p></article>)}</div></Section>
+  <Section class="pt-0"><div class="surface-panel rounded-[2rem] p-8"><h2 class="text-2xl font-bold text-white">Información pública, decisiones responsables</h2><p class="mt-4 max-w-3xl text-base leading-7 text-campaign-text-muted">Las cifras y antecedentes deben leerse junto con la evaluación ambiental, las observaciones ciudadanas y el conocimiento local. Consulta los documentos y comparte información verificable.</p></div></Section>
 </MainLayout>

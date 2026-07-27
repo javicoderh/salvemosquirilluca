@@ -6,6 +6,8 @@ export type MultiModalCarouselItem = {
   date?: string;
   address?: string;
   description?: string;
+  href?: string;
+  kicker?: string;
 };
 
 interface Props {
@@ -33,6 +35,8 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
             data-carousel-date={item.date ?? ""}
             data-carousel-address={item.address ?? ""}
             data-carousel-description={item.description ?? ""}
+            data-carousel-href={item.href ?? ""}
+            data-carousel-kicker={item.kicker ?? ""}
             aria-hidden={index === 0 ? "false" : "true"}
             role="button"
             tabindex={index === 0 ? 0 : -1}
@@ -48,13 +52,23 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
 
             {item.type === "event" ? (
               <div class="multimodal-carousel__event">
-                <p class="multimodal-carousel__kicker">Evento</p>
+                <p class="multimodal-carousel__kicker">{item.kicker ?? "Acción ciudadana"}</p>
                 <h3>{item.name}</h3>
                 <div class="multimodal-carousel__meta">
                   {item.date && <span>{item.date}</span>}
                   {item.address && <span>{item.address}</span>}
                 </div>
                 {item.description && <p>{item.description}</p>}
+                {item.href && (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    onclick="event.stopPropagation()"
+                  >
+                    Leer noticia →
+                  </a>
+                )}
               </div>
             ) : (
               <div class="multimodal-carousel__caption">
@@ -146,7 +160,9 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
       name: slide.getAttribute("data-carousel-name") || "",
       date: slide.getAttribute("data-carousel-date") || "",
       address: slide.getAttribute("data-carousel-address") || "",
-      description: slide.getAttribute("data-carousel-description") || ""
+      description: slide.getAttribute("data-carousel-description") || "",
+      href: slide.getAttribute("data-carousel-href") || "",
+      kicker: slide.getAttribute("data-carousel-kicker") || ""
     });
 
     const pauseInactiveVideos = () => {
@@ -199,7 +215,7 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
         lightboxVideo.src = isVideo ? item.source : "";
         if (isVideo) lightboxVideo.play().catch(() => {});
       }
-      if (lightboxKicker instanceof HTMLElement) lightboxKicker.textContent = isEvent ? "Evento" : isVideo ? "Video" : "Imagen";
+      if (lightboxKicker instanceof HTMLElement) lightboxKicker.textContent = isEvent ? item.kicker || "Acción ciudadana" : isVideo ? "Video" : "Imagen";
       if (lightboxTitle instanceof HTMLElement) lightboxTitle.textContent = item.name;
       if (lightboxDescription instanceof HTMLElement) {
         lightboxDescription.textContent = item.description;
@@ -345,14 +361,14 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
     width: 100%;
     height: 100%;
     object-fit: contain;
-    background: #05070b;
+    background: var(--campaign-black);
   }
 
   .multimodal-carousel__slide::after {
     position: absolute;
     inset: 0;
     content: "";
-    background: linear-gradient(180deg, rgba(5, 7, 11, 0) 38%, rgba(5, 7, 11, 0.82) 100%);
+    background: linear-gradient(180deg, rgba(9, 11, 7, 0) 38%, rgba(9, 11, 7, 0.86) 100%);
     pointer-events: none;
   }
 
@@ -413,6 +429,16 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
     color: var(--campaign-warm);
   }
 
+  .multimodal-carousel__event > a {
+    display: inline-flex;
+    margin-top: 0.65rem;
+    color: var(--campaign-sky);
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+  }
+
   .multimodal-carousel__nav {
     position: absolute;
     top: 50%;
@@ -425,14 +451,14 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
     transform: translateY(-50%);
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 999px;
-    background: rgba(5, 7, 11, 0.68);
+    background: rgba(9, 11, 7, 0.72);
     color: white;
     cursor: pointer;
     transition: background 180ms ease, transform 180ms ease;
   }
 
   .multimodal-carousel__nav:hover {
-    background: rgba(56, 182, 255, 0.28);
+    background: rgba(106, 141, 82, 0.22);
     transform: translateY(-50%) scale(1.04);
   }
 
@@ -483,7 +509,7 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
   }
 
   .multimodal-carousel__lightbox::backdrop {
-    background: rgba(2, 4, 8, 0.84);
+    background: rgba(9, 11, 7, 0.88);
     backdrop-filter: blur(10px);
   }
 
@@ -505,7 +531,7 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.16);
     border-radius: 1rem;
-    background: #05070b;
+    background: var(--campaign-black);
     box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.5);
   }
 
@@ -527,7 +553,7 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
 
   .multimodal-carousel__lightbox-content {
     padding: 1rem 4.25rem 1.15rem;
-    background: rgba(5, 7, 11, 0.98);
+    background: rgba(17, 19, 13, 0.98);
   }
 
   .multimodal-carousel__lightbox-content h3 {
@@ -572,7 +598,7 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
     justify-content: center;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 999px;
-    background: rgba(5, 7, 11, 0.78);
+    background: rgba(9, 11, 7, 0.82);
     color: white;
     cursor: pointer;
     font-size: 1.9rem;
@@ -600,7 +626,7 @@ const carouselId = `multimodal-carousel-${Math.random().toString(36).slice(2)}`;
 
   .multimodal-carousel__lightbox-close:hover,
   .multimodal-carousel__lightbox-nav:hover {
-    background: rgba(56, 182, 255, 0.3);
+    background: rgba(106, 141, 82, 0.24);
   }
 
   @keyframes multimodal-lightbox-in {

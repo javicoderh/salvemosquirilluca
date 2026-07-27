@@ -9,7 +9,15 @@ interface Props {
 }
 
 const { links } = Astro.props;
-const publicLinks = links.filter((link) => /^https?:\/\//.test(link.href) && link.label !== "YouTube");
+const socialIconPaths: Record<string, string> = {
+  Instagram:
+    "M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2.2A2.8 2.8 0 0 0 4.2 7v10A2.8 2.8 0 0 0 7 19.8h10a2.8 2.8 0 0 0 2.8-2.8V7A2.8 2.8 0 0 0 17 4.2H7Zm10.75 1.65a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2.2A2.8 2.8 0 1 0 12 14.8 2.8 2.8 0 0 0 12 9.2Z",
+  Facebook:
+    "M13.5 22v-8.7h3l.45-3.4H13.5V7.72c0-.98.28-1.65 1.72-1.65H17V3.03c-.77-.1-1.55-.15-2.33-.15-2.3 0-3.87 1.4-3.87 3.98V9.9H8v3.4h2.8V22h2.7Z"
+};
+const publicLinks = links.filter(
+  (link) => /^https?:\/\//.test(link.href) && Boolean(socialIconPaths[link.label])
+);
 ---
 
 <div class="flex flex-wrap gap-3">
@@ -21,9 +29,13 @@ const publicLinks = links.filter((link) => /^https?:\/\//.test(link.href) && lin
       data-analytics-event="social_click"
       data-analytics-label={link.label}
       data-analytics-context="social_links_row"
-      class="focus-ring inline-flex min-h-8 items-center rounded-full border border-white/15 bg-white/6 px-3 py-1.5 text-xs font-medium text-white transition hover:-translate-y-0.5 hover:border-campaign-sky hover:bg-white/10 md:min-h-12 md:px-5 md:py-3 md:text-sm"
+      aria-label={link.label}
+      title={link.label}
+      class="focus-ring inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/6 text-white transition hover:-translate-y-0.5 hover:border-campaign-sky hover:bg-campaign-sky/12 hover:text-campaign-sky md:h-12 md:w-12"
     >
-      {link.label}
+      <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5 fill-current md:h-6 md:w-6">
+        <path d={socialIconPaths[link.label]}></path>
+      </svg>
     </a>
   ))}
 </div>

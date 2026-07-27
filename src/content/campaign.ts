@@ -1,262 +1,156 @@
 const externalLinks = {
-  letterPdf: "/assets/carta-abierta-pinguino-humboldt.pdf",
+  letterPdf: "",
   form: "/firma",
   linktree: "",
-  instagram: "https://www.instagram.com/esmasqueunpinguino/",
-  tiktok: "https://www.tiktok.com/@esmasqueunpinguino",
-  youtube: "https://www.youtube.com/Esmasqueunpinguino"
+  instagram: "https://www.instagram.com/salvemos.quirilluca/",
+  facebook: "https://www.facebook.com/quirillucapatrimonio/",
+  tiktok: "",
+  youtube: ""
 } as const;
 
 export const campaignConfig = {
   site: {
-    name: "Es más que un pingüino",
-    siteUrl: "https://esmasqueunpinguino.cl",
+    name: "Salvemos Quirilluca",
+    siteUrl: "https://salvemosquirilluca.cl",
     locale: "es_CL",
     language: "es-CL",
-    title: "Es más que un pingüino | Firma por su protección",
+    title: "Salvemos Quirilluca | Territorio vivo, comunidad organizada",
     description:
-      "Campaña ciudadana para apoyar la protección del pingüino de Humboldt desde la ciencia y la participación informada. Lee la carta, firma y comparte.",
-    themeColor: "#05070B",
-    contactEmail: "pinguinodehumboldtmn@gmail.com",
-    author: "Equipo Es más que un pingüino"
+      "Organización comunitaria por la protección de los Acantilados de Quirilluca y los ecosistemas de Puchuncaví.",
+    themeColor: "#1D2418",
+    contactEmail: "contacto@salvemosquirilluca.cl",
+    author: "Salvemos Quirilluca"
   },
   theme: {
     colors: {
-      bg: "#05070B",
-      surface: "#0E1722",
-      surfaceStrong: "#122536",
-      text: "#FFFFFF",
-      textMuted: "#C9D3DE",
-      border: "rgba(255,255,255,0.12)",
-      sky: "#38B6FF",
-      ocean: "#0097B2",
-      warm: "#E8CF63",
-      pink: "#FFA2D1",
-      blush: "#F4B7D3",
-      black: "#000000",
-      white: "#FFFFFF"
+      bg: "#11130D",
+      surface: "#1D2418",
+      surfaceStrong: "#2B3524",
+      text: "#F3EBDD",
+      textMuted: "#C8C0AD",
+      border: "rgba(215,192,155,0.2)",
+      sky: "#6A8D52",
+      ocean: "#315B5B",
+      warm: "#D0A457",
+      clay: "#A96845",
+      stone: "#D7C09B",
+      black: "#090B07",
+      white: "#F3EBDD"
     }
   },
   assets: {
-    logo: "/assets/logo-pinguino.png",
-    ogImage: "/assets/og-cover.svg",
+    logo: "/assets/quirilluca/logo-salvemos-quirilluca.svg",
+    ogImage: "/assets/quirilluca/LSQ-01_paisaje_acantilados_portada.jpg",
     favicon: "/favicon.svg",
-    publicLetterPdf: "/assets/carta-abierta-pinguino-humboldt.pdf",
-    publicLetterPdfEn: "/assets/open-letter-humboldt-penguin-en.pdf"
+    publicLetterPdf: "",
+    publicLetterPdfEn: ""
   },
   links: externalLinks,
   dates: {
-    signatureDeadlineIso: "2026-06-08T23:59:59-04:00",
-    signatureDeadlineLabel: "8 de junio de 2026"
+    signatureDeadlineIso: "2026-12-31T23:59:59-03:00",
+    signatureDeadlineLabel: "una protección efectiva para Quirilluca"
   },
   hero: {
     mode: "static-dark" as "static-dark" | "video",
     videoSrc: "",
-    eyebrow: "Campaña ciudadana por la protección del pingüino de Humboldt",
-    title: "Es más que un pingüino",
+    eyebrow: "Organización comunitaria por la defensa del territorio",
+    title: "Quirilluca es un territorio vivo",
     subtitle:
-      "En solo 5 años, la población reproductiva del pingüino de Humboldt cayó un 63% en las colonias estudiadas de Chile. Tu firma puede apoyar una protección oportuna, basada en evidencia científica, para esta especie y su ecosistema.",
+      "Los Acantilados de Quirilluca reúnen biodiversidad, patrimonio, memoria y comunidad. Conocerlos es el primer paso para defender una protección efectiva.",
     rotatingLines: [
-      "Cuidar esta especie también es cuidar el mar que compartimos.",
-      "Infórmate, firma y comparte.",
-      "Cada pingüino cuenta. Cada persona cuenta.",
-      "La ciencia nos ayuda a comprender por qué protegerlos importa."
+      "Biodiversidad, justicia ambiental y memoria.",
+      "El nombre del territorio también se defiende.",
+      "La comunidad está organizada e informada.",
+      "Proteger Quirilluca es cuidar el futuro de Puchuncaví."
     ],
     buttons: {
-      readLetter: "Leer la carta",
-      signNow: "Firmar ahora",
-      floating: "FIRMA LA CARTA AQUÍ"
+      readLetter: "Conoce Quirilluca",
+      signNow: "Súmate",
+      floating: "SÚMATE A LA DEFENSA"
     },
     signaturesCounter: {
-      enabled: true,
-      label: "Firmas reunidas",
+      enabled: false,
+      label: "Personas conectadas",
       value: "0",
-      note: "Conteo público actualizado desde la campaña."
+      note: "Estamos preparando una nueva base de participación."
     }
   },
   problem: {
-    title: "La evidencia nos invita a actuar",
+    title: "Un territorio extraordinario bajo presión",
     intro:
-      "En marzo de 2026, se retiró de la Contraloría el decreto que otorgaba protección absoluta al pingüino de Humboldt como Monumento Natural. Esto ocurre mientras la especie enfrenta un estado crítico tras perder miles de individuos por la Influenza Aviar y el fenómeno de El Niño. Por eso, hoy es importante acompañar con participación ciudadana una protección basada en evidencia.",
+      "Quirilluca se ubica entre Horcón y Maitencillo, en Puchuncaví. Es un Sitio Prioritario para la Conservación de la Biodiversidad y enfrenta presiones de proyectos de gran escala, mientras la comunidad busca protección oficial y participación informada.",
     cards: [
-      {
-        value: "63%",
-        label: "Caída reproductiva",
-        detail: "Descenso reportado en 5 años en colonias estudiadas de Chile."
-      },
-      {
-        value: "2026",
-        label: "Decreto retirado",
-        detail: "El retiro del decreto dejó en pausa una protección decisiva."
-      },
-      {
-        value: "8 Jun",
-        label: "Fecha de cierre",
-        detail: "La campaña se extiende hasta el 8 de junio, Día Mundial del Océano, para sumar más apoyo ciudadano informado."
-      }
+      { value: "1.045 ha", label: "Ex Fundo Quirilluca", detail: "Un sistema costero de acantilados, bosque, quebradas y mar." },
+      { value: "14.180", label: "Viviendas proyectadas", detail: "Cifra del proyecto Maratué vigente a julio de 2026." },
+      { value: "2017", label: "Defensa organizada", detail: "Año en que la comunidad comenzó a articularse frente al conflicto." }
     ]
   },
   ecosystem: {
-    title: "Proteger al pingüino es cuidar un sistema completo",
+    title: "Proteger Quirilluca es cuidar un sistema completo",
     body:
-      "¿Por qué es más que un pingüino? Porque es un bioindicador clave de la corriente de Humboldt. Su presencia ayuda a entender la salud del océano y los cambios que pueden afectar la productividad marina, la pesca artesanal y el turismo del que dependen miles de familias chilenas. Protegerlo también es cuidar nuestro futuro.",
+      "Aquí conviven bosque y matorral esclerófilo, piqueros, bellotos del norte, lagartos, aves costeras, quebradas, estratos fosilíferos y una memoria comunitaria que no puede separarse del paisaje.",
     pillars: [
-      {
-        title: "Océano",
-        icon: "◌",
-        description:
-          "El pingüino de Humboldt alerta cuando la salud del mar cambia y la cadena alimentaria se desestabiliza."
-      },
-      {
-        title: "Pesca y economía",
-        icon: "≈",
-        description:
-          "La productividad marina sostiene empleos, alimentación y la economía costera de comunidades enteras."
-      },
-      {
-        title: "Turismo",
-        icon: "✦",
-        description:
-          "La biodiversidad viva sostiene experiencias, identidad local y un futuro posible para el territorio."
-      }
+      { title: "Biodiversidad", icon: "✦", description: "Piquero común, belloto del norte, chungungo y muchas otras especies encuentran refugio en este corredor costero." },
+      { title: "Territorio", icon: "◒", description: "Acantilados, playas, quebradas y bosque forman un sistema ecológico, geológico y paisajístico conectado." },
+      { title: "Comunidad", icon: "≈", description: "La defensa nace de habitantes que cuidan la memoria, el acceso y el futuro de Puchuncaví." }
     ]
   },
   conversion: {
-    title: "Cada pingüino cuenta, cada firma cuenta.",
-    cardTitle: "Firma antes del 8 de junio",
-    cardText:
-      "La carta abierta busca reunir apoyo ciudadano informado para acompañar la protección del pingüino de Humboldt como Monumento Natural.",
-    shareTitle: "¿Ya firmaste? Ayuda a que más personas conozcan esta causa. Síguenos y comparte.",
-    shareText:
-      "No olvides compartir la página usando el hashtag #esmasqueunpinguino y el emoji 🐧.",
-    reminder:
-      "Apoyar esta causa es una forma cercana de cuidar un hogar natural único. Cada firma ayuda a visibilizar, desde la ciencia, por qué proteger al pingüino de Humboldt importa.",
-    hashtags: ["#esmasqueunpinguino", "#PingüinoDeHumboldt", "#MonumentoNatural"]
+    title: "La defensa de Quirilluca necesita una comunidad conectada.",
+    cardTitle: "Súmate a Salvemos Quirilluca",
+    cardText: "Recibe información, participa en acciones vigentes y ayuda a que la evidencia del territorio llegue a más personas.",
+    shareTitle: "Comparte la historia de Quirilluca.",
+    shareText: "Difunde esta causa y usa #SalvemosQuirilluca.",
+    reminder: "La protección efectiva se construye con información, organización y cuidado colectivo.",
+    hashtags: ["#SalvemosQuirilluca", "#Quirilluca", "#Puchuncaví"]
   },
   signatureForm: {
-    title: "Firma la carta ciudadana",
-    intro:
-      "Tu firma respalda una solicitud ciudadana para acompañar, desde la evidencia científica, la protección del pingüino de Humboldt.",
-    helper:
-      "Completa tus datos y acepta el consentimiento.",
-    submitLabel: "Firmar la carta",
-    rutHelp: "Ingresa tu RUT con puntos o sin puntos. El dígito verificador puede ser número o K.",
-    privacyNote:
-      "Tus datos se usan únicamente para gestionar tu firma, respaldar esta campaña y, si lo autorizas, enviarte actualizaciones del proceso. Para consultas sobre privacidad o tratamiento de datos, escríbenos a pinguinodehumboldtmn@gmail.com.",
-    configuredNote:
-      "El formulario está listo para conectarse a un endpoint o proveedor externo desde `src/content/campaign.ts`.",
-    trustPoints: [
-      "Campaña pacífica y ciudadana",
-      "Base científica y transparencia pública",
-      "Participación abierta y responsable"
-    ],
+    title: "Súmate a la defensa de Quirilluca",
+    intro: "Déjanos tus datos para recibir información y conocer formas concretas de participar.",
+    helper: "Completa tus datos y acepta el consentimiento.",
+    submitLabel: "Quiero sumarme",
+    rutHelp: "Por ahora usamos este formulario como registro temporal. La base definitiva se conectará en una siguiente etapa.",
+    privacyNote: "Tus datos se usarán únicamente para gestionar tu participación y enviarte actualizaciones si lo autorizas.",
+    configuredNote: "El registro temporal funciona con un fallback mientras se prepara la nueva base de datos.",
+    trustPoints: ["Información con fuentes", "Participación comunitaria", "Cuidado del territorio"],
     fields: {
-      firstName: "Nombre",
-      lastName: "Apellido",
-      rut: "RUT",
-      email: "Correo electrónico",
-      age: "Edad",
-      country: "País",
-      legalNature: "¿Eres persona natural o jurídica?",
-      region: "Región",
-      commune: "Comuna",
-      affiliation: "Organización o vínculo con el territorio",
-      message: "¿Por qué firmas?",
-      adultDeclaration: "Declaro ser mayor de 18 años.",
-      consent: "Acepto respaldar esta carta y el uso de mis datos para esta campaña, y acepto la",
-      updates: "Quiero recibir actualizaciones de la campaña."
+      firstName: "Nombre", lastName: "Apellido", rut: "RUT", email: "Correo electrónico", age: "Edad", country: "País",
+      legalNature: "¿Eres persona natural o jurídica?", region: "Región", commune: "Comuna", affiliation: "Organización o vínculo con el territorio",
+      message: "¿Por qué quieres sumarte?", adultDeclaration: "Declaro ser mayor de 18 años.", consent: "Acepto el uso de mis datos para esta campaña y acepto la", updates: "Quiero recibir actualizaciones de Salvemos Quirilluca."
     }
   },
   transparency: {
-    title: "Transparencia, ciencia y participación ciudadana",
-    body:
-      "Esta campaña es ciudadana, colaborativa y ambientalmente responsable. Se apoya en evidencia científica, participación abierta y una invitación respetuosa a cuidar al pingüino de Humboldt y el ecosistema que sostiene.",
-    publicReadinessTitle: "Señales públicas y técnicas del sitio",
-    publicReadinessBody:
-      "Además de la campaña pública, el sitio expone documentos, rutas y señales técnicas mínimas para buscadores, validadores y scrapers legítimos.",
-    principles: [
-      "No violencia",
-      "Empatía",
-      "Colaboración",
-      "Alegría",
-      "Ciencia como base",
-      "Responsabilidad ambiental",
-      "Participación ciudadana"
-    ],
-    publicReadinessLinks: [
-      { href: "/robots.txt", label: "robots.txt" },
-      { href: "/sitemap.xml", label: "sitemap.xml" },
-      { href: "/.well-known/security.txt", label: "security.txt" },
-      { href: "/privacidad", label: "Política de privacidad" },
-      { href: "/contacto", label: "Contacto" }
-    ]
+    title: "Evidencia, comunidad y transparencia",
+    body: "Salvemos Quirilluca comunica con fecha, fuentes y atribución. El estado legal y ambiental del territorio puede cambiar, por eso cada actualización debe revisarse.",
+    publicReadinessTitle: "Un archivo público para la defensa territorial",
+    publicReadinessBody: "Reunimos investigación, documentos, cronología y fuentes para que la comunidad pueda informarse y participar.",
+    principles: ["Comunidad", "Evidencia", "Cuidado", "Participación informada", "Memoria territorial"],
+    publicReadinessLinks: [{ href: "/robots.txt", label: "robots.txt" }, { href: "/sitemap.xml", label: "sitemap.xml" }, { href: "/privacidad", label: "Política de privacidad" }, { href: "/contacto", label: "Contacto" }]
   },
   navigation: [
     { href: "/", label: "Inicio" },
-    { href: "/ciencia", label: "Ciencia" },
-    { href: "/eventos", label: "Pingüieventos" },
-    { href: "/noticias", label: "Pingüinoticias" },
-    { href: "/pinguimateriales", label: "Pingüimateriales" },
-    { href: "/carta", label: "Carta" },
-    { href: "/faq", label: "FAQ" },
-    { href: "/firma", label: "Firma" },
-    { href: "/contacto", label: "Contacto" }
+    { href: "/pinguino-de-humboldt", label: "Quirilluca" },
+    { href: "/amenazas", label: "La amenaza" },
+    { href: "/transparencia", label: "Nuestra historia" },
+    { href: "/ciencia", label: "Documentos" },
+    { href: "/noticias", label: "Actualidad" },
+    { href: "/contacto", label: "Contacto" },
+    { href: "/firma", label: "Súmate" }
   ],
   knowledgeHub: [
-    {
-      href: "/pinguino-de-humboldt",
-      label: "Pingüino de Humboldt",
-      description: "Contexto general sobre la especie, su ecosistema y por qué importa protegerla."
-    },
-    {
-      href: "/monumento-natural-pinguino-de-humboldt",
-      label: "Monumento Natural",
-      description: "Explicación clara sobre la figura de protección y su relevancia para la especie."
-    },
-    {
-      href: "/amenazas",
-      label: "Amenazas",
-      description: "Factores que hoy afectan al pingüino de Humboldt y a su hábitat."
-    },
-    {
-      href: "/ciencia",
-      label: "Ciencia",
-      description: "Resumen divulgativo de la base científica y de la metodología pública de la campaña."
-    },
-    {
-      href: "/faq",
-      label: "Preguntas frecuentes",
-      description: "Respuestas claras sobre la carta, la firma, el uso de datos y la participación ciudadana."
-    },
-    {
-      href: "/noticias",
-      label: "Pingüinoticias",
-      description: "Hitos, novedades y avances publicados con fecha para mantener frescura editorial."
-    }
+    { href: "/pinguino-de-humboldt", label: "El territorio", description: "Acantilados, bosque, mar, geología y memoria de Quirilluca." },
+    { href: "/amenazas", label: "La amenaza", description: "Maratué y otras presiones sobre Puchuncaví." },
+    { href: "/ciencia", label: "Documentos", description: "Fuentes públicas, estudios y resoluciones." },
+    { href: "/transparencia", label: "Nuestra historia", description: "La defensa comunitaria organizada desde 2017." },
+    { href: "/noticias", label: "Actualidad", description: "Hitos y novedades con fecha." },
+    { href: "/contacto", label: "Súmate", description: "Canales oficiales y formas de participar." }
   ],
   socialLinks: [
     { href: externalLinks.instagram, label: "Instagram" },
-    { href: externalLinks.tiktok, label: "TikTok" },
-    { href: externalLinks.youtube, label: "YouTube" },
+    { href: externalLinks.facebook, label: "Facebook" },
     { href: externalLinks.linktree, label: "Linktree" }
   ],
-  futureRoutes: [
-    {
-      phase: "Fase 2",
-      route: "/glosario",
-      description: "Glosario ciudadano para explicar conceptos ecológicos, jurídicos y científicos del sitio."
-    },
-    {
-      phase: "Fase 3",
-      route: "/material-educativo",
-      description: "Recursos pedagógicos y contenido científico descargable."
-    },
-    {
-      phase: "Fase 4",
-      route: "/participa",
-      description: "Mapa y calendario de acciones ciudadanas enviadas por la comunidad."
-    }
-  ]
+  futureRoutes: []
 } as const;
 
 export type CampaignConfig = typeof campaignConfig;

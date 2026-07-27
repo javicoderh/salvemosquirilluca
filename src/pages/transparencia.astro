@@ -7,7 +7,6 @@ import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
 import { campaignConfig } from "../content/campaign";
 
 const { transparency, futureRoutes, knowledgeHub } = campaignConfig;
-const letterPdfUrl = new URL(campaignConfig.assets.publicLetterPdf, campaignConfig.site.siteUrl).toString();
 const breadcrumbItems = [
   { name: "Inicio", path: "/" },
   { name: "Transparencia", path: "/transparencia" }
@@ -16,9 +15,9 @@ const breadcrumbItems = [
 
 <MainLayout
   path="/transparencia"
-  title="Transparencia y metodología | Es más que un pingüino"
-  description="Principios, base científica, metodología pública y estructura de información de la campaña por la protección del pingüino de Humboldt."
-  keywords={["transparencia campaña", "metodología", "base científica", "pingüino de Humboldt", "participación ciudadana"]}
+  title="Transparencia y fuentes | Salvemos Quirilluca"
+  description="Principios, fuentes públicas y metodología de Salvemos Quirilluca."
+  keywords={["transparencia Quirilluca", "fuentes públicas", "base territorial", "participación ciudadana"]}
   breadcrumbItems={breadcrumbItems}
   pageType="AboutPage"
 >
@@ -45,8 +44,8 @@ const breadcrumbItems = [
         </ul>
 
         <div class="mt-8 flex flex-wrap gap-4">
-          <ButtonLink href={letterPdfUrl} label="Abrir carta científica" target="_blank" analyticsEvent="document_open" analyticsContext="transparency_page" />
-          <ButtonLink href="/firma" label="Firmar la carta" variant="pink" analyticsEvent="cta_click" analyticsContext="transparency_page" />
+          <ButtonLink href="/ciencia" label="Ver documentos" target="_self" analyticsEvent="navigation_click" analyticsContext="transparency_page" />
+          <ButtonLink href="/firma" label="Sumarme" variant="pink" analyticsEvent="cta_click" analyticsContext="transparency_page" />
         </div>
       </article>
 

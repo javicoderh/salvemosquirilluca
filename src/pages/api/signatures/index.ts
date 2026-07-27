@@ -16,6 +16,7 @@ import { isTokenUsed, markTokenUsed } from "../../../lib/security/token-store";
 import { checkAndFireAlert } from "../../../lib/security/alerts";
 import { sendSignatureConfirmationEmail } from "../../../lib/email/signature-confirmation";
 import { isUniqueViolation } from "../../../lib/db/postgres";
+import { isQuirillucaFallbackEnabled, registerFallbackSignature } from "../../../lib/quirilluca/fallback";
 
 export const prerender = false;
 
@@ -47,6 +48,24 @@ const jsonResponse = (status: number, body: Record<string, unknown>, headers?: H
 
 export const POST: APIRoute = async ({ request, url }) => {
   const requestId = request.headers.get("x-request-id") ?? crypto.randomUUID();
+  if (isQuirillucaFallbackEnabled && !isServerStorageConfigured) {
+    try {
+      const formData = await request.formData();
+      const signature = registerFallbackSignature({
+        firstName: formData.get("first_name"), lastName: formData.get("last_name"), rut: formData.get("rut"),
+        email: formData.get("email"), age: formData.get("age"), country: formData.get("country"),
+        legalNature: formData.get("legal_nature"), region: formData.get("region"), commune: formData.get("commune"),
+        affiliation: formData.get("affiliation"), message: formData.get("message"),
+        adultDeclaration: formData.get("adult_declaration") === "on", consent: formData.get("consent") === "on",
+        updates: formData.get("updates") === "on"
+      });
+      return jsonResponse(200, { ok: true, status: "accepted", message: `Gracias, ${signature.firstName}. Tu interés por Quirilluca quedó registrado.` });
+    } catch (error) {
+      if (error instanceof ZodError) return jsonResponse(400, { ok: false, message: securityMessages.invalidSubmission, fieldErrors: error.flatten().fieldErrors });
+      if (error instanceof Error && error.message === "fallback-duplicate") return jsonResponse(409, { ok: false, duplicate: true, message: securityMessages.duplicate });
+      return jsonResponse(500, { ok: false, message: securityMessages.genericFailure });
+    }
+  }
   if (!isSecurityConfigured || !isServerStorageConfigured) {
     return jsonResponse(503, {
       ok: false,

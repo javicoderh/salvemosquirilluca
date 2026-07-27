@@ -61,8 +61,8 @@ export async function sendSignatureConfirmationEmail(input: SignatureConfirmatio
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${subject}</title>
 </head>
-<body style="margin:0;padding:0;background-color:#05070b;font-family:'Segoe UI',Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#05070b;padding:40px 16px;">
+<body style="margin:0;padding:0;background-color:#090B07;font-family:'Segoe UI',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background-color:#090B07;padding:40px 16px;">
     <tr>
       <td align="center">
         <table width="100%" cellpadding="0" cellspacing="0" style="max-width:540px;">
@@ -85,7 +85,7 @@ export async function sendSignatureConfirmationEmail(input: SignatureConfirmatio
             <td style="background:linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03));border:1px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px 36px;">
 
               <!-- Eyebrow -->
-              <p style="margin:0 0 20px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#38B6FF;">
+              <p style="margin:0 0 20px;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#6A8D52;">
                 Campaña ciudadana
               </p>
 
@@ -95,7 +95,7 @@ export async function sendSignatureConfirmationEmail(input: SignatureConfirmatio
               </p>
 
               <!-- Status -->
-              <p style="margin:0 0 24px;font-size:16px;line-height:1.7;color:#a0b4c8;">
+              <p style="margin:0 0 24px;font-size:16px;line-height:1.7;color:#C8C0AD;">
                 ${statusLine}
               </p>
 
@@ -107,16 +107,16 @@ export async function sendSignatureConfirmationEmail(input: SignatureConfirmatio
               </table>
 
               <!-- Thank you -->
-              <p style="margin:0 0 28px;font-size:15px;line-height:1.7;color:#a0b4c8;">
+              <p style="margin:0 0 28px;font-size:15px;line-height:1.7;color:#C8C0AD;">
                 Gracias por sumarte a esta campaña ciudadana por la protección del pingüino de Humboldt.
               </p>
 
               <!-- CTA -->
               <table cellpadding="0" cellspacing="0" style="margin-bottom:32px;">
                 <tr>
-                  <td align="center" style="background-color:#E8CF63;border-radius:100px;">
-                    <a href="${siteUrl}/carta" style="display:inline-block;padding:13px 28px;font-size:14px;font-weight:700;color:#05070b;text-decoration:none;letter-spacing:0.02em;">
-                      Ver la carta ciudadana
+                  <td align="center" style="background-color:#D0A457;border-radius:100px;">
+                    <a href="${siteUrl}/transparencia" style="display:inline-block;padding:13px 28px;font-size:14px;font-weight:700;color:#090B07;text-decoration:none;letter-spacing:0.02em;">
+                      Ver transparencia y fuentes
                     </a>
                   </td>
                 </tr>
@@ -130,7 +130,7 @@ export async function sendSignatureConfirmationEmail(input: SignatureConfirmatio
               </table>
 
               <!-- Dispute -->
-              <p style="margin:0;font-size:13px;line-height:1.7;color:#637a8a;">
+              <p style="margin:0;font-size:13px;line-height:1.7;color:#8C887A;">
                 ${escapeHtml(disputeLine)}
               </p>
 
@@ -140,13 +140,13 @@ export async function sendSignatureConfirmationEmail(input: SignatureConfirmatio
           <!-- Footer -->
           <tr>
             <td align="center" style="padding-top:28px;">
-              <p style="margin:0 0 6px;font-size:12px;color:#3d5263;">
-                Equipo <strong style="color:#4d6a7a;">Es más que un pingüino</strong>
+              <p style="margin:0 0 6px;font-size:12px;color:#6D6A5F;">
+                Equipo <strong style="color:#8F8978;">Salvemos Quirilluca</strong>
               </p>
-              <p style="margin:0;font-size:12px;color:#3d5263;">
-                <a href="mailto:${supportEmail}" style="color:#38B6FF;text-decoration:none;">${supportEmail}</a>
+              <p style="margin:0;font-size:12px;color:#6D6A5F;">
+                <a href="mailto:${supportEmail}" style="color:#6A8D52;text-decoration:none;">${supportEmail}</a>
                 &nbsp;·&nbsp;
-                <a href="${siteUrl}" style="color:#38B6FF;text-decoration:none;">esmasqueunpinguino.cl</a>
+                <a href="${siteUrl}" style="color:#6A8D52;text-decoration:none;">salvemosquirilluca.cl</a>
               </p>
             </td>
           </tr>

@@ -15,7 +15,7 @@ const publicSecurityHeaders = {
 } as const;
 
 const html429 = (message: string) =>
-  `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Intenta nuevamente</title></head><body style="font-family:system-ui,sans-serif;background:#05070B;color:#fff;padding:2rem;line-height:1.6"><main style="max-width:36rem;margin:10vh auto"><h1 style="font-size:1.75rem;margin-bottom:1rem">Estamos recibiendo mucho tráfico</h1><p>${message}</p></main></body></html>`;
+  `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Intenta nuevamente</title></head><body style="font-family:system-ui,sans-serif;background:#11130D;color:#F3EBDD;padding:2rem;line-height:1.6"><main style="max-width:36rem;margin:10vh auto"><h1 style="font-size:1.75rem;margin-bottom:1rem;color:#D0A457">Estamos recibiendo mucho tráfico</h1><p>${message}</p></main></body></html>`;
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const requestId = crypto.randomUUID();

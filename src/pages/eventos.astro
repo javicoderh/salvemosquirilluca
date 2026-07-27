@@ -33,8 +33,8 @@ Astro.response.headers.set("Cache-Control", "public, s-maxage=300, stale-while-r
 const eventosSchema = approvedEvents.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Pingüieventos — mapa ciudadano de actividades por el pingüino de Humboldt",
-  description: "Eventos aprobados en Chile en torno a la protección del pingüino de Humboldt, organizados por región.",
+  name: "Actividades comunitarias de Quirilluca",
+  description: "Eventos y actividades comunitarias vinculadas a la defensa de Quirilluca.",
   numberOfItems: approvedEvents.length,
   itemListElement: approvedEvents.map((event, index) => ({
     "@type": "ListItem",
@@ -64,20 +64,20 @@ const eventosSchema = approvedEvents.length > 0 ? {
 
 <MainLayout
   path="/eventos"
-  title="Mapa de eventos por el pingüino de Humboldt | Es más que un pingüino"
-  description="Explora eventos aprobados en Chile asociados al pingüino de Humboldt, organizados por región y presentados en un mapa ciudadano del país."
-  keywords={["eventos pingüino de Humboldt", "mapa Chile regiones", "actividades ciudadanas", "eventos ambientales"]}
+  title="Actividades comunitarias | Salvemos Quirilluca"
+  description="Explora actividades y encuentros comunitarios vinculados a Quirilluca."
+  keywords={["eventos Quirilluca", "Puchuncaví", "actividades ciudadanas", "educación ambiental"]}
   breadcrumbItems={breadcrumbItems}
   pageType="CollectionPage"
   schema={eventosSchema}
-  socialImageAlt="Mapa ciudadano de eventos por el pingüino de Humboldt en Chile"
+  socialImageAlt="Mapa ciudadano de actividades por Quirilluca"
 >
   <Section size="compact">
     <Breadcrumbs items={breadcrumbItems} />
     <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
       <SectionHeading
         eyebrow="Pingüieventos"
-        title="Un mapa ciudadano de actividades en torno al pingüino de Humboldt"
+        title="Un mapa ciudadano de actividades por Quirilluca"
         body="Esta sección reúne eventos aprobados por el equipo y los sitúa en un mapa de Chile por regiones. La idea es facilitar la participación territorial sin sacrificar orden, contexto ni calidad de la información publicada."
         as="h1"
       />

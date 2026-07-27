@@ -1,6 +1,5 @@
 ---
 import { chileRegions, chileRegionByKey, normalizeRegionKey } from "../../lib/events/chile-regions";
-import logoSrc from "../../assets/logo_pinguino_humboldt_circulo.png";
 
 interface EventMarker {
   id: string;
@@ -76,12 +75,12 @@ const regionCounts = Object.fromEntries(
         <defs>
           <linearGradient id="regionStroke" x1="0" x2="1">
             <stop offset="0%" stop-color="rgba(255,255,255,0.2)" />
-            <stop offset="100%" stop-color="rgba(56,182,255,0.8)" />
+            <stop offset="100%" stop-color="rgba(106,141,82,0.72)" />
           </linearGradient>
           <linearGradient id="chileBodyGrad" x1="1" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="rgba(56,182,255,0.22)" />
-            <stop offset="55%" stop-color="rgba(255,162,209,0.16)" />
-            <stop offset="100%" stop-color="rgba(232,207,99,0.14)" />
+            <stop offset="0%" stop-color="rgba(49,91,91,0.24)" />
+            <stop offset="55%" stop-color="rgba(169,104,69,0.18)" />
+            <stop offset="100%" stop-color="rgba(208,164,87,0.16)" />
           </linearGradient>
         </defs>
         <path
@@ -101,7 +100,7 @@ const regionCounts = Object.fromEntries(
               width={region.width}
               height={region.height}
               rx="18"
-              fill="rgba(8,14,24,0.96)"
+              fill="rgba(17,19,13,0.96)"
             ></rect>
             <rect
               x={region.x}
@@ -186,8 +185,8 @@ const regionCounts = Object.fromEntries(
   <div class="event-modal-card surface-panel">
     <button type="button" class="event-modal-close focus-ring" data-event-close aria-label="Cerrar detalle del evento">×</button>
     <div class="event-modal-image">
-      <img src={logoSrc.src} alt="Logo pingüino de Humboldt" class="event-modal-logo" />
-      <span class="campaign-hashtag">#esmásqueunpingüino</span>
+      <img src="/assets/quirilluca/logo-salvemos-quirilluca.svg" alt="Logo de Salvemos Quirilluca" class="event-modal-logo" />
+      <span class="campaign-hashtag">#SalvemosQuirilluca</span>
       <img src="" alt="" class="event-modal-real-img" data-event-image />
     </div>
     <div class="event-modal-body">

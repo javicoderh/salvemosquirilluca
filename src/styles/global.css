@@ -14,8 +14,10 @@
   --color-campaign-sky: var(--campaign-sky);
   --color-campaign-ocean: var(--campaign-ocean);
   --color-campaign-warm: var(--campaign-warm);
-  --color-campaign-pink: var(--campaign-pink);
-  --color-campaign-blush: var(--campaign-blush);
+  --color-campaign-clay: var(--campaign-clay);
+  --color-campaign-stone: var(--campaign-stone);
+  --color-campaign-black: var(--campaign-black);
+  --color-campaign-white: var(--campaign-white);
 }
 
 html {
@@ -26,9 +28,9 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top, rgba(56, 182, 255, 0.18), transparent 30%),
-    radial-gradient(circle at 80% 20%, rgba(255, 162, 209, 0.14), transparent 20%),
-    linear-gradient(180deg, #04060a 0%, #07131d 45%, #05070b 100%);
+    radial-gradient(circle at top, rgba(106, 141, 82, 0.13), transparent 30%),
+    radial-gradient(circle at 80% 20%, rgba(169, 104, 69, 0.14), transparent 22%),
+    linear-gradient(180deg, #0c100b 0%, #182016 45%, #0b0e09 100%);
   color: var(--campaign-text);
   font-family:
     "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
@@ -45,13 +47,15 @@ img {
 }
 
 ::selection {
-  background: rgba(255, 232, 139, 0.35);
+  background: rgba(208, 164, 87, 0.38);
   color: var(--campaign-text);
 }
 
 .surface-panel {
   border: 1px solid var(--campaign-border);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  background:
+    linear-gradient(145deg, rgba(215, 192, 155, 0.08), rgba(49, 91, 91, 0.06)),
+    var(--campaign-surface);
   backdrop-filter: blur(16px);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
 }
@@ -60,7 +64,7 @@ img {
   background: linear-gradient(
     100deg,
     var(--campaign-warm) 15%,
-    #7ecfff 52%,
+    var(--campaign-stone) 52%,
     var(--campaign-sky) 85%
   );
   -webkit-background-clip: text;
@@ -75,6 +79,23 @@ img {
     1px 0 rgba(0, 0, 0, 0.85),
     0 -1px rgba(0, 0, 0, 0.85),
     0 2px 10px rgba(0, 0, 0, 0.28);
+}
+
+:where(
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"],
+  [role="button"],
+  summary,
+  a[class*="rounded-full"]
+) {
+  text-shadow:
+    -1px 0 1px rgba(0, 0, 0, 0.92),
+    0 1px 1px rgba(0, 0, 0, 0.92),
+    1px 0 1px rgba(0, 0, 0, 0.92),
+    0 -1px 1px rgba(0, 0, 0, 0.92),
+    0 2px 5px rgba(0, 0, 0, 0.72);
 }
 
 .focus-ring {
@@ -102,11 +123,11 @@ img {
   position: relative;
   min-height: 42rem;
   border-radius: 1.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--campaign-border);
   background:
-    radial-gradient(circle at top, rgba(56, 182, 255, 0.14), transparent 28%),
-    radial-gradient(circle at 80% 15%, rgba(255, 162, 209, 0.14), transparent 24%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+    radial-gradient(circle at top, rgba(106, 141, 82, 0.13), transparent 28%),
+    radial-gradient(circle at 80% 15%, rgba(169, 104, 69, 0.14), transparent 24%),
+    linear-gradient(180deg, rgba(215, 192, 155, 0.06), rgba(43, 53, 36, 0.04));
   overflow: hidden;
 }
 
@@ -133,28 +154,28 @@ img {
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   background:
     radial-gradient(circle at 38% 28%, rgba(255, 255, 255, 0.32), transparent 48%),
-    linear-gradient(160deg, var(--campaign-warm), #f3d86f);
+    linear-gradient(160deg, var(--campaign-warm), var(--campaign-stone));
   animation: star-twinkle 2.8s ease-in-out infinite;
 }
 
 .event-marker:hover .event-marker-dot {
   animation: none;
   transform: scale(1.22) rotate(-12deg);
-  filter: drop-shadow(0 0 20px rgba(255, 232, 139, 1));
+  filter: drop-shadow(0 0 20px rgba(208, 164, 87, 0.9));
 }
 
 @keyframes star-twinkle {
   0%, 100% {
     transform: scale(1) rotate(0deg);
-    filter: drop-shadow(0 0 5px rgba(255, 232, 139, 0.45));
+    filter: drop-shadow(0 0 5px rgba(208, 164, 87, 0.42));
   }
   40% {
     transform: scale(1.13) rotate(8deg);
-    filter: drop-shadow(0 0 13px rgba(255, 232, 139, 0.85));
+    filter: drop-shadow(0 0 13px rgba(208, 164, 87, 0.82));
   }
   70% {
     transform: scale(1.06) rotate(-4deg);
-    filter: drop-shadow(0 0 8px rgba(255, 232, 139, 0.6));
+    filter: drop-shadow(0 0 8px rgba(208, 164, 87, 0.58));
   }
 }
 
@@ -186,7 +207,7 @@ img {
 .event-modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(2, 5, 10, 0.78);
+  background: rgba(9, 11, 7, 0.82);
   backdrop-filter: blur(10px);
 }
 
@@ -203,7 +224,7 @@ img {
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #05070b;
+  background: var(--campaign-black);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -232,6 +253,7 @@ img {
   width: auto;
   object-fit: contain;
   opacity: 0.9;
+  filter: brightness(0) invert(1);
 }
 
 .news-img-container {
@@ -239,7 +261,7 @@ img {
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
-  background: #05070b;
+  background: var(--campaign-black);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -268,6 +290,87 @@ img {
   width: auto;
   object-fit: contain;
   opacity: 0.9;
+  filter: brightness(0) invert(1);
+}
+
+.logo-glow-shell {
+  --logo-mask: url("/assets/quirilluca/logo-salvemos-quirilluca.svg");
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.logo-glow-shell::before,
+.logo-glow-shell::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  -webkit-mask: var(--logo-mask) center / contain no-repeat;
+  mask: var(--logo-mask) center / contain no-repeat;
+}
+
+.logo-glow-shell::before {
+  display: none;
+}
+
+.logo-glow-shell::after {
+  z-index: 3;
+  background:
+    linear-gradient(
+      105deg,
+      transparent 0%,
+      transparent 39%,
+      var(--campaign-ocean) 44%,
+      var(--campaign-sky) 47%,
+      var(--campaign-white) 50%,
+      var(--campaign-warm) 53%,
+      #748052 56%,
+      transparent 61%,
+      transparent 100%
+    );
+  background-position: 180% 50%;
+  background-size: 320% 100%;
+  filter:
+    saturate(1.4)
+    drop-shadow(0 0 1px rgba(106, 141, 82, 0.7))
+    drop-shadow(0 0 3px rgba(208, 164, 87, 0.5));
+  opacity: 1;
+  animation: logo-light-scan 4.2s linear infinite;
+  will-change: background-position, opacity;
+}
+
+.logo-glow-shell--header::after {
+  display: none;
+}
+
+.logo-glow-image {
+  position: relative;
+  z-index: 1;
+  filter: brightness(0) invert(1);
+}
+
+@keyframes logo-light-scan {
+  0% {
+    background-position: 180% 50%;
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  58% {
+    opacity: 1;
+  }
+  65% {
+    background-position: -80% 50%;
+    opacity: 0;
+  }
+  100% {
+    background-position: -80% 50%;
+    opacity: 0;
+  }
 }
 
 .campaign-hashtag {
@@ -293,7 +396,7 @@ img {
   height: 2.5rem;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
-  background: rgba(5, 7, 11, 0.65);
+  background: rgba(9, 11, 7, 0.72);
   color: white;
   font-size: 1.3rem;
   cursor: pointer;
@@ -309,6 +412,16 @@ img {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /*
+   * The animated campaign mark is an explicit editorial effect. Keep only
+   * this small animation active even when the operating system minimizes
+   * broader interface motion.
+   */
+  .logo-glow-shell::after {
+    animation-duration: 4.2s !important;
+    animation-iteration-count: infinite !important;
   }
 }
 
