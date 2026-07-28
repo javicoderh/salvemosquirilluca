@@ -17,7 +17,27 @@ from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
-DATABASE_URL = "postgresql://neondb_owner:npg_2KNXAoyYguU9@ep-frosty-smoke-ammrhe89.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require"
+def load_database_url():
+    names = ("POSTGRES_URL_NON_POOLING", "POSTGRES_PRISMA_URL", "POSTGRES_URL")
+    values = dict(os.environ)
+    for path in (".env.local", ".env"):
+        try:
+            with open(path, encoding="utf-8") as handle:
+                for line in handle:
+                    line = line.strip()
+                    if not line or line.startswith("#") or "=" not in line:
+                        continue
+                    key, value = line.split("=", 1)
+                    values.setdefault(key.strip(), value.strip().strip('"'))
+        except FileNotFoundError:
+            continue
+    for name in names:
+        if values.get(name):
+            return values[name]
+    raise RuntimeError("Configura POSTGRES_URL_NON_POOLING o POSTGRES_URL en .env.local")
+
+
+POSTGRES_URL = load_database_url()
 
 STOPWORDS_ES = set("""
 a al algo algunas algunos ante antes como con contra cual cuando de del desde
@@ -87,7 +107,7 @@ def sentiment(text: str) -> str:
 
 
 async def fetch_messages():
-    conn = await asyncpg.connect(DATABASE_URL)
+    conn = await asyncpg.connect(POSTGRES_URL)
     rows = await conn.fetch(
         "SELECT id, message FROM signatures WHERE message IS NOT NULL AND trim(message) <> '' ORDER BY created_at_ms"
     )

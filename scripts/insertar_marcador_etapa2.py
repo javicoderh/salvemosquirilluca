@@ -1,6 +1,26 @@
-import asyncio, asyncpg, hashlib, time
+import asyncio, asyncpg, hashlib, os, time
+from pathlib import Path
 
-DB = "postgresql://neondb_owner:npg_2KNXAoyYguU9@ep-frosty-smoke-ammrhe89.c-5.us-east-1.aws.neon.tech/neondb?sslmode=require"
+def load_database_url():
+    values = dict(os.environ)
+    root = Path(__file__).parent.parent
+    for path in (root / ".env.local", root / ".env"):
+        try:
+            for line in path.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                key, value = line.split("=", 1)
+                values.setdefault(key.strip(), value.strip().strip('"'))
+        except FileNotFoundError:
+            continue
+    for name in ("POSTGRES_URL_NON_POOLING", "POSTGRES_PRISMA_URL", "POSTGRES_URL"):
+        if values.get(name):
+            return values[name]
+    raise RuntimeError("Configura POSTGRES_URL_NON_POOLING o POSTGRES_URL en .env.local")
+
+
+DB = load_database_url()
 
 MARKER_ID = "aaaaaaaa-0000-0000-0000-000000000002"
 

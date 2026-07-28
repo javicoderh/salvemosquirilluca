@@ -32,19 +32,22 @@ ROOT = Path(__file__).parent.parent
 
 def load_env():
     env = {}
-    with open(ROOT / ".env") as f:
-        for line in f:
-            line = line.strip()
-            if not line or line.startswith("#"):
-                continue
-            eq = line.index("=") if "=" in line else -1
-            if eq == -1:
-                continue
-            key = line[:eq].strip()
-            value = line[eq + 1:].strip()
-            if value.startswith('"') and value.endswith('"'):
-                value = value[1:-1].replace("\\n", "\n")
-            env[key] = value
+    for path in (ROOT / ".env.local", ROOT / ".env"):
+        if not path.exists():
+            continue
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+                eq = line.index("=") if "=" in line else -1
+                if eq == -1:
+                    continue
+                key = line[:eq].strip()
+                value = line[eq + 1:].strip()
+                if value.startswith('"') and value.endswith('"'):
+                    value = value[1:-1].replace("\\n", "\n")
+                env[key] = value
     return env
 
 ENV = load_env()
@@ -64,7 +67,7 @@ def ms_to_str(ms):
 # ─── PostgreSQL ───────────────────────────────────────────────────────────────
 
 async def fetch_pg():
-    url = ENV["DATABASE_URL_UNPOOLED"]
+    url = ENV.get("POSTGRES_URL_NON_POOLING") or ENV.get("POSTGRES_PRISMA_URL") or ENV["POSTGRES_URL"]
     # asyncpg necesita la URL sin el channel_binding param
     url = re.sub(r"[?&]channel_binding=require", "", url)
     if "?" in url:

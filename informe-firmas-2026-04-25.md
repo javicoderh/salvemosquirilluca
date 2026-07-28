@@ -243,7 +243,7 @@ El formulario de firma **no incluye campo de género**, por lo que no es posible
 
 ---
 
-*Análisis realizado sobre datos extraídos directamente de PostgreSQL (Neon) y Firebase Firestore el 25 de abril de 2026.*
+*Análisis realizado sobre datos extraídos directamente de PostgreSQL (Supabase) y Firebase Firestore el 25 de abril de 2026.*
 
 ---
 

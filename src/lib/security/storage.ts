@@ -19,7 +19,7 @@ export const emergencySignatureCounterFallback = {
   foreignCount: 256
 } as const;
 
-// Firmas históricas respaldadas de la antigua base Neon (borrada): no se leen en
+// Firmas históricas respaldadas de una base anterior (borrada): no se leen en
 // vivo pero existen, así que se suman como offset fijo. Calibrado para que el total
 // público sea 18458 (18202 chilenas + 256 extranjeras) sobre los contadores vivos
 // actuales de Firestore + Supabase.

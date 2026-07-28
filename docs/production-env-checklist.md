@@ -4,20 +4,17 @@ This checklist is for verifying the production runtime uses the intended Postgre
 
 ## Postgres runtime
 
-These variables must all point to the current Supabase Postgres project and must not reference any legacy Neon host:
+These variables must all point to the current Supabase Postgres project:
 
-- `DATABASE_URL`
-- `DATABASE_URL_UNPOOLED`
 - `POSTGRES_URL`
 - `POSTGRES_URL_NON_POOLING`
 - `POSTGRES_PRISMA_URL`
 
 Expected characteristics:
 
-- pooled URLs use `aws-1-us-east-1.pooler.supabase.com:6543`
-- non-pooled URLs use `aws-1-us-east-1.pooler.supabase.com:5432`
+- pooled and non-pooled URLs use the active Supabase project
 - database/user pair matches the active Supabase project
-- no value contains `neon.tech`
+- no value references an obsolete database provider
 
 ## Admin auth
 

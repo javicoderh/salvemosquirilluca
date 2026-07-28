@@ -502,7 +502,7 @@ def build_full_html(md_path: str) -> str:
   <div class="content">
     {body_html}
     <p class="footer-note">
-      Análisis realizado sobre datos extraídos directamente de PostgreSQL (Neon) y Firebase Firestore
+      Análisis realizado sobre datos extraídos directamente de PostgreSQL (Supabase) y Firebase Firestore
       el 25 de abril de 2026. Documento de uso interno — campaña Es más que un pingüino.
     </p>
   </div>

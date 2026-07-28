@@ -1,11 +1,11 @@
 /**
- * Extrae todas las firmas de PostgreSQL (Neon) y Firebase Firestore
+ * Extrae todas las firmas de PostgreSQL (Supabase) y Firebase Firestore
  * y las exporta a un archivo Excel con todas las columnas disponibles.
  *
  * Uso: node scripts/export_firmas_excel.mjs
  */
 
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 import * as XLSX from "xlsx";
@@ -14,7 +14,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // ─── Cargar variables de entorno desde .env ─────────────────────────────────
 function loadEnv() {
-  const envPath = resolve(__dirname, "../.env");
+  const envPath = [resolve(__dirname, "../.env.local"), resolve(__dirname, "../.env")]
+    .find((path) => existsSync(path));
+  if (!envPath) throw new Error("No se encontró .env.local ni .env");
   const raw = readFileSync(envPath, "utf-8");
   const env = {};
   for (const line of raw.split("\n")) {
@@ -38,7 +40,7 @@ const env = loadEnv();
 async function fetchPostgresSignatures() {
   const { default: postgres } = await import("postgres");
 
-  const sql = postgres(env.DATABASE_URL_UNPOOLED, {
+  const sql = postgres(env.POSTGRES_URL_NON_POOLING || env.POSTGRES_PRISMA_URL || env.POSTGRES_URL, {
     prepare: false,
     ssl: "require",
     connect_timeout: 15

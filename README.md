@@ -6,7 +6,7 @@ Sitio de campaña construido con Astro para movilización ciudadana en torno a l
 - captación y conteo de firmas
 - operación segura en un entorno serverless
 
-Hoy el sitio corre con SSR sobre Vercel, persiste firmas en Neon Postgres cuando `DATABASE_URL` está configurada y mantiene la capa Firestore disponible como fallback y compatibilidad operativa. La interfaz sigue enfocada en conversión: leer la carta, firmar y compartir.
+Hoy el sitio corre con SSR sobre Vercel, persiste firmas en Supabase Postgres cuando `POSTGRES_URL` está configurada y mantiene la capa Firestore disponible como fallback y compatibilidad operativa. La interfaz sigue enfocada en conversión: leer la carta, firmar y compartir.
 
 ## Qué resuelve este proyecto
 
@@ -24,7 +24,7 @@ Hoy el sitio corre con SSR sobre Vercel, persiste firmas en Neon Postgres cuando
 - TypeScript
 - Tailwind CSS 4
 - Vue 3
-- Neon Postgres
+- Supabase Postgres
 - Firebase Firestore
 - Vercel Serverless
 
@@ -195,7 +195,7 @@ El formulario pide:
 4. El `POST /api/signatures` valida de nuevo en server-side.
 5. Se evalúa dedupe por hashes.
 6. Se aplica scoring de riesgo.
-7. Si pasa, se escribe en Neon Postgres si `DATABASE_URL` existe; si no, usa Firestore.
+7. Si pasa, se escribe en Supabase Postgres si `POSTGRES_URL` existe; si no, usa Firestore.
 8. El contador público se alimenta desde firmas `accepted`.
 
 ## Modelo de datos de firmas
@@ -280,14 +280,12 @@ Hoy el código ya no depende del documento manual `public_stats/signatures_count
 
 ## Variables de entorno
 
-Variables mínimas para firmar de verdad con Neon:
+Variables mínimas para firmar de verdad con Supabase:
 
 ```bash
 SECURITY_HASH_SECRET=
 SECURITY_ALLOWED_ORIGINS=https://esmasqueunpinguino.cl,https://www.esmasqueunpinguino.cl,https://masqueunpinguino.cl,https://www.masqueunpinguino.cl,http://localhost:4321
 
-DATABASE_URL=
-DATABASE_URL_UNPOOLED=
 POSTGRES_URL=
 POSTGRES_URL_NON_POOLING=
 POSTGRES_PRISMA_URL=
@@ -408,7 +406,7 @@ Los RUT se limpian, rescatan y validan antes de generar el archivo listo para im
 
 - proyecto Astro SSR
 - adapter de Vercel
-- variables de entorno de Neon y seguridad cargadas en Vercel
+- variables de entorno de Supabase y seguridad cargadas en Vercel
 - variables de Firestore opcionales si quieres mantener fallback operativo
 - Node runtime 22
 

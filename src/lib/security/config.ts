@@ -78,16 +78,11 @@ export const securityConfig = {
     privateKey: (import.meta.env.FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY ?? "").replace(/\\n/g, "\n")
   },
   postgres: {
-    url:
-      import.meta.env.POSTGRES_URL ??
-      import.meta.env.DATABASE_URL ??
-      "",
+    url: import.meta.env.POSTGRES_URL ?? "",
     unpooledUrl:
       import.meta.env.POSTGRES_URL_NON_POOLING ??
       import.meta.env.POSTGRES_PRISMA_URL ??
-      import.meta.env.DATABASE_URL_UNPOOLED ??
       import.meta.env.POSTGRES_URL ??
-      import.meta.env.DATABASE_URL ??
       ""
   },
   collections: {
