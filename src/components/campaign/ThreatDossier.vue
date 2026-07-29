@@ -651,7 +651,7 @@ onBeforeUnmount(() => observer?.disconnect());
           con memoria, ciencia y acción jurídica.
         </span>
         <div>
-          <a href="/firma">Sumar mi firma</a>
+          <a href="/sumate#firma">Sumar mi firma</a>
           <a href="/participa">Formas de participar</a>
         </div>
       </article>

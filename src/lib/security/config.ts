@@ -34,7 +34,12 @@ export const securityConfig = {
     import.meta.env.SECURITY_BYPASS_SIGNATURE_READ_CHECKS,
     false
   ),
-  hashSecret: import.meta.env.SECURITY_HASH_SECRET ?? "",
+  // SECURITY_HASH_SECRET remains the preferred dedicated key. Existing Supabase
+  // deployments can use their server-only JWT secret as a stable HMAC fallback.
+  hashSecret:
+    import.meta.env.SECURITY_HASH_SECRET ??
+    import.meta.env.SUPABASE_JWT_SECRET ??
+    "",
   maxPayloadBytes: parseNumber(import.meta.env.SECURITY_MAX_PAYLOAD_BYTES, 16_384),
   minSubmitTimeMs: withAttackMode(
     parseNumber(import.meta.env.SECURITY_MIN_SUBMIT_TIME_MS, 2_500),
@@ -93,6 +98,8 @@ export const securityConfig = {
       import.meta.env.FIREBASE_EVENT_SUBMISSIONS_COLLECTION ?? "event_submissions",
     eventDedupe:
       import.meta.env.FIREBASE_EVENT_DEDUPE_COLLECTION ?? "event_submission_dedupe",
+    volunteerSubmissions:
+      import.meta.env.FIREBASE_VOLUNTEER_SUBMISSIONS_COLLECTION ?? "volunteer_submissions",
     news:
       import.meta.env.FIREBASE_NEWS_COLLECTION ?? "campaign_news",
     carousel:
@@ -183,6 +190,46 @@ export const securityConfig = {
         maxHits: withAttackMode(
           parseNumber(import.meta.env.SECURITY_EVENT_POST_IP_WINDOW_LIMIT, 8),
           parseNumber(import.meta.env.SECURITY_ATTACK_EVENT_POST_IP_WINDOW_LIMIT, 4),
+          highProtectionMode
+        )
+      }
+    ] satisfies RateLimitRule[],
+    volunteerPostIp: [
+      {
+        name: "burst",
+        windowMs: 1000 * 60 * 5,
+        maxHits: withAttackMode(
+          parseNumber(import.meta.env.SECURITY_VOLUNTEER_POST_IP_BURST_LIMIT, 4),
+          parseNumber(import.meta.env.SECURITY_ATTACK_VOLUNTEER_POST_IP_BURST_LIMIT, 2),
+          highProtectionMode
+        )
+      },
+      {
+        name: "window",
+        windowMs: 1000 * 60 * 60 * 3,
+        maxHits: withAttackMode(
+          parseNumber(import.meta.env.SECURITY_VOLUNTEER_POST_IP_WINDOW_LIMIT, 8),
+          parseNumber(import.meta.env.SECURITY_ATTACK_VOLUNTEER_POST_IP_WINDOW_LIMIT, 4),
+          highProtectionMode
+        )
+      }
+    ] satisfies RateLimitRule[],
+    volunteerPostFingerprint: [
+      {
+        name: "burst",
+        windowMs: 1000 * 60 * 10,
+        maxHits: withAttackMode(
+          parseNumber(import.meta.env.SECURITY_VOLUNTEER_POST_FP_BURST_LIMIT, 3),
+          parseNumber(import.meta.env.SECURITY_ATTACK_VOLUNTEER_POST_FP_BURST_LIMIT, 2),
+          highProtectionMode
+        )
+      },
+      {
+        name: "window",
+        windowMs: 1000 * 60 * 60 * 6,
+        maxHits: withAttackMode(
+          parseNumber(import.meta.env.SECURITY_VOLUNTEER_POST_FP_WINDOW_LIMIT, 4),
+          parseNumber(import.meta.env.SECURITY_ATTACK_VOLUNTEER_POST_FP_WINDOW_LIMIT, 2),
           highProtectionMode
         )
       }

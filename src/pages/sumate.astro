@@ -1,0 +1,431 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Section from "../components/ui/Section.astro";
+import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
+import SignatureForm from "../components/ui/SignatureForm.astro";
+import VolunteerForm from "../components/ui/VolunteerForm.astro";
+
+export const prerender = false;
+
+const breadcrumbItems = [
+  { name: "Inicio", path: "/" },
+  { name: "Súmate", path: "/sumate" }
+];
+---
+
+<MainLayout
+  path="/sumate"
+  title="Súmate | Salvemos Quirilluca"
+  description="Firma la campaña ciudadana Salvemos Quirilluca o inscríbete para participar como voluntario o voluntaria."
+  hideFloatingCta={true}
+  keywords={["Salvemos Quirilluca", "firmar campaña", "voluntariado ambiental", "participación ciudadana"]}
+  breadcrumbItems={breadcrumbItems}
+>
+  <Section size="compact">
+    <Breadcrumbs items={breadcrumbItems} class="mb-4" />
+
+    <section class="join-hero">
+      <img
+        src="/assets/quirilluca/OTR-03_paisaje_quebrada_playa_credito_salvemos_quirilluca_facebook.jpg"
+        alt="Quebrada y costa del territorio de Quirilluca"
+      />
+      <div class="join-hero__veil"></div>
+      <div class="join-hero__content">
+        <p>Súmate a Salvemos Quirilluca</p>
+        <h1>Una causa.<br /><em>Dos formas de actuar.</em></h1>
+        <span>
+          Tu firma amplía el respaldo ciudadano. Tu tiempo fortalece la organización que cuida,
+          investiga y comunica este territorio.
+        </span>
+      </div>
+    </section>
+
+    <nav id="opciones" class="join-choices" aria-label="Elige cómo participar" role="tablist">
+      <button
+        type="button"
+        id="join-tab-signature"
+        class="join-choice focus-ring is-active"
+        role="tab"
+        aria-selected="true"
+        aria-controls="join-panel-signature"
+        data-join-choice="signature"
+      >
+        <span>01</span>
+        <div>
+          <small>Respaldo ciudadano</small>
+          <strong>Firmar la campaña</strong>
+          <p>Entrega tu apoyo público a la defensa de Quirilluca.</p>
+        </div>
+        <i aria-hidden="true">→</i>
+      </button>
+
+      <button
+        type="button"
+        id="join-tab-volunteer"
+        class="join-choice focus-ring"
+        role="tab"
+        aria-selected="false"
+        aria-controls="join-panel-volunteer"
+        data-join-choice="volunteer"
+      >
+        <span>02</span>
+        <div>
+          <small>Participación activa</small>
+          <strong>Ser voluntario</strong>
+          <p>Ofrece tu tiempo, experiencia o energía a la comunidad.</p>
+        </div>
+        <i aria-hidden="true">→</i>
+      </button>
+    </nav>
+
+    <div class="join-content">
+      <section
+        id="join-panel-signature"
+        role="tabpanel"
+        aria-labelledby="join-tab-signature"
+        data-join-panel="signature"
+      >
+        <div id="formulario-firma" class="join-form-grid">
+          <aside class="join-context">
+            <p>Firma ciudadana</p>
+            <h2>Haz visible tu respaldo.</h2>
+            <span>
+              Cada adhesión fortalece una señal colectiva por una protección efectiva para
+              Quirilluca.
+            </span>
+            <ul>
+              <li>Registro individual protegido</li>
+              <li>Validación para reducir duplicados</li>
+              <li>Uso de datos limitado a la campaña</li>
+            </ul>
+          </aside>
+          <SignatureForm />
+        </div>
+      </section>
+
+      <section
+        id="join-panel-volunteer"
+        role="tabpanel"
+        aria-labelledby="join-tab-volunteer"
+        data-join-panel="volunteer"
+        hidden
+      >
+        <div class="join-form-grid">
+          <aside class="join-context join-context--volunteer">
+            <p>Voluntariado</p>
+            <h2>Convierte tu interés en acción.</h2>
+            <span>
+              Las tareas cambian con el momento de la campaña: territorio, comunicaciones,
+              actividades, ciencia, diseño y organización comunitaria.
+            </span>
+            <ul>
+              <li>Inscripción privada</li>
+              <li>Contacto según necesidades reales</li>
+              <li>Participación voluntaria y flexible</li>
+            </ul>
+          </aside>
+          <VolunteerForm />
+        </div>
+      </section>
+    </div>
+  </Section>
+</MainLayout>
+
+<script>
+  const choices = Array.from(document.querySelectorAll("[data-join-choice]"));
+  const panels = Array.from(document.querySelectorAll("[data-join-panel]"));
+
+  const activateChoice = (choice: string, updateHash = true) => {
+    choices.forEach((node) => {
+      if (!(node instanceof HTMLButtonElement)) return;
+      const active = node.dataset.joinChoice === choice;
+      node.classList.toggle("is-active", active);
+      node.setAttribute("aria-selected", String(active));
+    });
+
+    panels.forEach((node) => {
+      if (!(node instanceof HTMLElement)) return;
+      node.hidden = node.dataset.joinPanel !== choice;
+    });
+
+    if (updateHash) {
+      const hash = choice === "volunteer" ? "#voluntariado" : "#firma";
+      history.replaceState(null, "", hash);
+    }
+  };
+
+  choices.forEach((node, index) => {
+    if (!(node instanceof HTMLButtonElement)) return;
+
+    node.addEventListener("click", () => {
+      activateChoice(node.dataset.joinChoice ?? "signature");
+      document.querySelector(".join-content")?.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    });
+
+    node.addEventListener("keydown", (event) => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === "ArrowLeft") nextIndex = (index - 1 + choices.length) % choices.length;
+      if (event.key === "ArrowRight") nextIndex = (index + 1) % choices.length;
+      if (event.key === "Home") nextIndex = 0;
+      if (event.key === "End") nextIndex = choices.length - 1;
+      const next = choices[nextIndex];
+      if (next instanceof HTMLButtonElement) {
+        next.focus();
+        activateChoice(next.dataset.joinChoice ?? "signature", false);
+      }
+    });
+  });
+
+  activateChoice(location.hash === "#voluntariado" ? "volunteer" : "signature", false);
+</script>
+
+<style>
+  .join-hero {
+    position: relative;
+    min-height: clamp(15rem, 28vw, 20rem);
+    overflow: hidden;
+    border: 1px solid rgba(215, 192, 155, 0.18);
+    border-radius: 2rem 2rem 0.4rem 0.4rem;
+    isolation: isolate;
+  }
+
+  .join-hero > img,
+  .join-hero__veil {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+  }
+
+  .join-hero > img {
+    object-fit: cover;
+    filter: saturate(0.72) contrast(1.08);
+  }
+
+  .join-hero__veil {
+    z-index: -1;
+    background:
+      linear-gradient(90deg, rgba(9, 11, 7, 0.96), rgba(9, 11, 7, 0.42)),
+      linear-gradient(0deg, rgba(9, 11, 7, 0.8), transparent 55%);
+  }
+
+  .join-hero__content {
+    display: flex;
+    min-height: inherit;
+    max-width: 54rem;
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .join-hero__content > p,
+  .join-context > p {
+    color: var(--campaign-warm);
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .join-hero h1 {
+    margin-top: 0.7rem;
+    color: white;
+    font-size: clamp(2.35rem, 5vw, 4.6rem);
+    line-height: 0.9;
+    letter-spacing: -0.07em;
+  }
+
+  .join-hero h1 em {
+    color: var(--campaign-warm);
+    font-family: Georgia, serif;
+    font-size: 0.72em;
+    font-weight: 400;
+  }
+
+  .join-hero__content > span {
+    max-width: 40rem;
+    margin-top: 0.9rem;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: clamp(0.9rem, 1.5vw, 1.08rem);
+    line-height: 1.65;
+  }
+
+  .join-choices {
+    display: grid;
+    gap: 1px;
+    margin-top: 0.55rem;
+    background: rgba(215, 192, 155, 0.18);
+  }
+
+  .join-choice {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 1rem;
+    min-height: 7.5rem;
+    padding: clamp(1rem, 3vw, 1.7rem);
+    align-items: start;
+    overflow: hidden;
+    background: #151a12;
+    color: var(--campaign-text-muted);
+    text-align: left;
+    transition: background 180ms ease, transform 180ms ease;
+  }
+
+  .join-choice::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    content: "";
+    background: var(--campaign-warm);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 180ms ease;
+  }
+
+  .join-choice:hover,
+  .join-choice.is-active {
+    background: #263020;
+  }
+
+  .join-choice.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .join-choice > span {
+    color: var(--campaign-warm);
+    font-family: "Courier New", monospace;
+    font-size: 0.7rem;
+    font-weight: 800;
+  }
+
+  .join-choice > div {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .join-choice small {
+    color: var(--campaign-sky);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .join-choice strong {
+    color: white;
+    font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+    text-shadow:
+      -1px 0 rgba(0, 0, 0, 0.88),
+      0 1px rgba(0, 0, 0, 0.88),
+      1px 0 rgba(0, 0, 0, 0.88),
+      0 -1px rgba(0, 0, 0, 0.88);
+  }
+
+  .join-choice p {
+    max-width: 32rem;
+    font-size: 0.75rem;
+    line-height: 1.45;
+  }
+
+  .join-choice i {
+    color: var(--campaign-warm);
+    font-size: 1.2rem;
+    font-style: normal;
+    transition: transform 180ms ease;
+  }
+
+  .join-choice:hover i,
+  .join-choice.is-active i {
+    transform: translateX(0.3rem);
+  }
+
+  .join-content {
+    scroll-margin-top: 7rem;
+    padding-top: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  .join-form-grid {
+    display: grid;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .join-context {
+    position: relative;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    overflow: hidden;
+    border: 1px solid rgba(215, 192, 155, 0.16);
+    border-radius: 2rem;
+    background:
+      radial-gradient(circle at 100% 0, rgba(106, 141, 82, 0.24), transparent 45%),
+      #151a12;
+  }
+
+  .join-context--volunteer {
+    background:
+      radial-gradient(circle at 100% 0, rgba(208, 164, 87, 0.22), transparent 45%),
+      #151a12;
+  }
+
+  .join-context h2 {
+    max-width: 12ch;
+    margin-top: 0.7rem;
+    color: white;
+    font-size: clamp(2rem, 4.5vw, 3.8rem);
+    line-height: 0.94;
+    letter-spacing: -0.05em;
+  }
+
+  .join-context > span {
+    display: block;
+    margin-top: 1rem;
+    color: var(--campaign-text-muted);
+    font-size: 0.84rem;
+    line-height: 1.65;
+  }
+
+  .join-context ul {
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 1.5rem;
+    color: white;
+    font-size: 0.72rem;
+  }
+
+  .join-context li {
+    padding: 0.65rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.8rem;
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  [hidden] {
+    display: none !important;
+  }
+
+  @media (min-width: 700px) {
+    .join-choices {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 960px) {
+    .join-form-grid {
+      grid-template-columns: minmax(18rem, 0.7fr) minmax(31rem, 1.3fr);
+    }
+
+    .join-context {
+      position: sticky;
+      top: 7rem;
+    }
+  }
+</style>

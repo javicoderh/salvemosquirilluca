@@ -8,6 +8,9 @@ export const securityMessages = {
   rateLimited: "Estamos recibiendo muchos envíos. Inténtalo nuevamente en un momento.",
   eventSuccess: "Recibimos tu propuesta de evento. Quedó pendiente de revisión.",
   eventDuplicate: "Ya existe una propuesta muy similar para ese evento o está en revisión.",
+  volunteerSuccess: "Recibimos tu inscripción. Gracias por ofrecer tu tiempo a Quirilluca.",
+  volunteerReview: "Recibimos tu inscripción y quedó en una revisión breve.",
+  volunteerDuplicate: "Este correo ya tiene una inscripción de voluntariado registrada o en revisión.",
   adminInvalidCredentials: "Las credenciales no son válidas.",
   adminUnauthorized: "Necesitas iniciar sesión para realizar esta acción."
 } as const;

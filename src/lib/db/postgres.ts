@@ -202,6 +202,34 @@ async function createSchema(sql: Sql) {
     await tx`create index if not exists event_submissions_status_created_idx on event_submissions (status, created_at_ms desc)`;
 
     await tx`
+      create table if not exists volunteer_submissions (
+        id uuid primary key,
+        full_name text not null,
+        email text not null,
+        phone text not null,
+        reason text not null,
+        consent boolean not null,
+        status text not null,
+        risk_decision text not null,
+        risk_reasons jsonb not null default '[]'::jsonb,
+        risk_score integer not null,
+        dedupe_email_hash text not null unique,
+        source_ip_hash text not null,
+        source_user_agent_hash text not null,
+        source_fingerprint_hash text not null,
+        source_origin_host text,
+        source_submitted_at_ms bigint not null,
+        security_token_issued_at_ms bigint not null,
+        security_submit_time_ms bigint not null,
+        security_captcha_verified boolean not null,
+        security_high_protection_mode boolean not null,
+        created_at_ms bigint not null,
+        updated_at_ms bigint not null
+      )
+    `;
+    await tx`create index if not exists volunteer_submissions_status_created_idx on volunteer_submissions (status, created_at_ms desc)`;
+
+    await tx`
       create table if not exists admin_users (
         id uuid primary key,
         username text not null unique,

@@ -1,0 +1,339 @@
+---
+import { isSecurityConfigured, isServerStorageConfigured, securityConfig } from "../../lib/security/config";
+import { createFormToken } from "../../lib/security/form-token";
+
+const isConfigured = isSecurityConfigured && isServerStorageConfigured;
+const formToken = isSecurityConfigured ? await createFormToken("volunteer_submit") : null;
+---
+
+<div class="surface-panel rounded-[2rem] p-7 md:p-8">
+  <div class="mb-8">
+    <p class="text-sm font-semibold uppercase tracking-[0.18em] text-campaign-warm">Voluntariado</p>
+    <h2 class="mt-3 text-3xl font-black tracking-tight text-white">Ofrece tu tiempo y tus capacidades</h2>
+    <p class="mt-4 max-w-2xl text-base leading-7 text-campaign-text-muted">
+      Cuéntanos quién eres y qué te inspira a participar. La organización podrá contactarte cuando
+      exista una tarea, actividad o equipo relacionado con tu interés.
+    </p>
+  </div>
+
+  <form
+    class="grid gap-5"
+    method="post"
+    action="/api/volunteers"
+    data-volunteer-form
+    data-form-configured={String(isConfigured)}
+    novalidate
+  >
+    <div class="hidden" aria-hidden="true">
+      <label>
+        Empresa
+        <input name="company" type="text" tabindex="-1" autocomplete="off" />
+      </label>
+    </div>
+
+    <label class="grid gap-2 text-sm font-medium text-white">
+      <span>Nombre completo</span>
+      <input
+        name="full_name"
+        autocomplete="name"
+        maxlength="120"
+        required
+        data-validate="full_name"
+        class="focus-ring min-h-12 rounded-2xl border border-white/14 bg-white/6 px-4 py-3 text-white placeholder:text-campaign-text-muted"
+        placeholder="Nombre y apellido"
+      />
+      <span class="max-h-0 overflow-hidden text-sm text-red-300 opacity-0 transition-all duration-300" data-error-for="full_name"></span>
+    </label>
+
+    <div class="grid gap-5 md:grid-cols-2">
+      <label class="grid gap-2 text-sm font-medium text-white">
+        <span>Correo electrónico</span>
+        <input
+          type="email"
+          name="email"
+          autocomplete="email"
+          maxlength="120"
+          required
+          data-validate="email"
+          class="focus-ring min-h-12 rounded-2xl border border-white/14 bg-white/6 px-4 py-3 text-white placeholder:text-campaign-text-muted"
+          placeholder="nombre@correo.cl"
+        />
+        <span class="max-h-0 overflow-hidden text-sm text-red-300 opacity-0 transition-all duration-300" data-error-for="email"></span>
+      </label>
+
+      <label class="grid gap-2 text-sm font-medium text-white">
+        <span>Teléfono</span>
+        <input
+          type="tel"
+          name="phone"
+          autocomplete="tel"
+          inputmode="tel"
+          maxlength="24"
+          required
+          data-validate="phone"
+          class="focus-ring min-h-12 rounded-2xl border border-white/14 bg-white/6 px-4 py-3 text-white placeholder:text-campaign-text-muted"
+          placeholder="+56 9 1234 5678"
+        />
+        <span class="max-h-0 overflow-hidden text-sm text-red-300 opacity-0 transition-all duration-300" data-error-for="phone"></span>
+      </label>
+    </div>
+
+    <label class="grid gap-2 text-sm font-medium text-white">
+      <span>¿Por qué quieres inscribirte como voluntario o voluntaria?</span>
+      <textarea
+        name="reason"
+        rows="6"
+        minlength="20"
+        maxlength="800"
+        required
+        data-validate="reason"
+        class="focus-ring rounded-2xl border border-white/14 bg-white/6 px-4 py-3 text-white placeholder:text-campaign-text-muted"
+        placeholder="Cuéntanos qué te mueve y de qué manera te gustaría aportar."
+      ></textarea>
+      <span class="flex justify-between gap-4 text-xs leading-5 text-campaign-text-muted">
+        <span>Entre 20 y 800 caracteres.</span>
+        <span data-reason-count>0 / 800</span>
+      </span>
+      <span class="max-h-0 overflow-hidden text-sm text-red-300 opacity-0 transition-all duration-300" data-error-for="reason"></span>
+    </label>
+
+    <div>
+      <label class="flex items-start gap-3 rounded-2xl border border-white/12 bg-white/5 p-4 text-sm text-campaign-text-muted">
+        <input
+          type="checkbox"
+          name="consent"
+          required
+          data-validate="consent"
+          class="mt-1 h-4 w-4 rounded border-white/20 bg-black text-campaign-warm"
+        />
+        <span>
+          Acepto que Salvemos Quirilluca use estos datos para gestionar mi inscripción y
+          contactarme por motivos de voluntariado, de acuerdo con la{" "}
+          <a href="/privacidad" class="font-semibold text-campaign-warm underline underline-offset-4">
+            política de privacidad
+          </a>.
+        </span>
+      </label>
+      <span class="max-h-0 overflow-hidden text-sm text-red-300 opacity-0 transition-all duration-300" data-error-for="consent"></span>
+    </div>
+
+    <input type="hidden" name="issued_at_ms" value={formToken?.issuedAtMs ?? ""} />
+    <input type="hidden" name="form_nonce" value={formToken?.nonce ?? ""} />
+    <input type="hidden" name="form_token" value={formToken?.signature ?? ""} />
+    <input type="hidden" name="captcha_token" value="" data-captcha-token />
+
+    <div class="grid gap-4 border-t border-white/10 pt-5">
+      <div class="grid gap-2 text-xs leading-5 text-campaign-text-muted sm:grid-cols-3">
+        <span class="rounded-xl border border-white/10 bg-white/4 px-3 py-2">Envío con token firmado</span>
+        <span class="rounded-xl border border-white/10 bg-white/4 px-3 py-2">Protección contra abuso</span>
+        <span class="rounded-xl border border-white/10 bg-white/4 px-3 py-2">Datos de contacto privados</span>
+      </div>
+
+      {!isConfigured && (
+        <p class="rounded-2xl border border-campaign-warm/25 bg-campaign-warm/8 px-4 py-3 text-sm text-campaign-warm">
+          Falta configurar la capa segura de almacenamiento para habilitar las inscripciones.
+        </p>
+      )}
+      {securityConfig.captcha.enabled && securityConfig.captcha.siteKey && (
+        <p class="rounded-2xl border border-white/12 bg-white/5 px-4 py-3 text-sm text-campaign-text-muted">
+          La protección reforzada está activa y puede solicitar una comprobación humana adicional.
+        </p>
+      )}
+
+      <button
+        type="submit"
+        data-volunteer-submit
+        class="focus-ring button-text-outline inline-flex min-h-12 items-center justify-center rounded-full border border-black/55 bg-campaign-warm px-6 py-3 text-[0.95rem] font-extrabold uppercase tracking-[0.08em] text-white shadow-[0_18px_60px_rgba(208,164,87,0.18)] transition hover:brightness-105 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        Inscribirme como voluntario
+      </button>
+
+      <p class="text-sm text-campaign-text-muted" role="status" aria-live="polite" data-volunteer-status>
+        {isConfigured
+          ? "Tus datos serán validados y protegidos antes de registrar la inscripción."
+          : "El formulario estará disponible cuando la capa segura se encuentre configurada."}
+      </p>
+    </div>
+  </form>
+</div>
+
+<script>
+  const form = document.querySelector("[data-volunteer-form]");
+  const status = document.querySelector("[data-volunteer-status]");
+  const submitButton = document.querySelector("[data-volunteer-submit]");
+  const reasonCount = document.querySelector("[data-reason-count]");
+
+  if (form instanceof HTMLFormElement && status instanceof HTMLElement) {
+    const fields = ["full_name", "email", "phone", "reason", "consent"] as const;
+    type FieldName = (typeof fields)[number];
+
+    const getField = (name: FieldName) => form.elements.namedItem(name);
+    const getValue = (name: FieldName) => {
+      const field = getField(name);
+      return field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement
+        ? field.value.trim()
+        : "";
+    };
+
+    const clearError = (name: FieldName) => {
+      const field = getField(name);
+      const error = form.querySelector(`[data-error-for="${name}"]`);
+      if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) {
+        field.classList.remove("border-red-400", "bg-red-950/20");
+        field.removeAttribute("aria-invalid");
+      }
+      if (error instanceof HTMLElement) {
+        error.textContent = "";
+        error.classList.add("max-h-0", "opacity-0");
+        error.classList.remove("max-h-16", "opacity-100", "mt-1");
+      }
+    };
+
+    const showError = (name: FieldName, message: string) => {
+      const field = getField(name);
+      const error = form.querySelector(`[data-error-for="${name}"]`);
+      if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) {
+        field.classList.add("border-red-400", "bg-red-950/20");
+        field.setAttribute("aria-invalid", "true");
+      }
+      if (error instanceof HTMLElement) {
+        error.textContent = message;
+        error.classList.remove("max-h-0", "opacity-0");
+        error.classList.add("max-h-16", "opacity-100", "mt-1");
+      }
+    };
+
+    const validateField = (name: FieldName) => {
+      const field = getField(name);
+      const value = getValue(name);
+      let message = "";
+
+      if (name === "consent") {
+        if (!(field instanceof HTMLInputElement) || !field.checked) {
+          message = "Debes aceptar el tratamiento de tus datos.";
+        }
+      } else if (!value) {
+        message = "Este campo es obligatorio.";
+      } else if (name === "full_name") {
+        const words = value.split(/\s+/).filter(Boolean);
+        if (value.length < 4 || value.length > 120 || words.length < 2) {
+          message = "Ingresa tu nombre completo.";
+        }
+      } else if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+        message = "Ingresa un correo electrónico válido.";
+      } else if (name === "phone") {
+        const digits = value.replace(/\D/g, "");
+        if (!/^\+?[\d\s().-]+$/.test(value) || digits.length < 8 || digits.length > 15) {
+          message = "Ingresa un teléfono válido.";
+        }
+      } else if (name === "reason" && (value.length < 20 || value.length > 800)) {
+        message = "Cuéntanos tu motivación en entre 20 y 800 caracteres.";
+      }
+
+      if (message) {
+        showError(name, message);
+        return false;
+      }
+      clearError(name);
+      return true;
+    };
+
+    fields.forEach((name) => {
+      const field = getField(name);
+      if (field instanceof HTMLInputElement || field instanceof HTMLTextAreaElement) {
+        const eventName = field.type === "checkbox" ? "change" : "input";
+        field.addEventListener(eventName, () => validateField(name));
+        field.addEventListener("blur", () => validateField(name));
+      }
+    });
+
+    const reasonField = getField("reason");
+    if (reasonField instanceof HTMLTextAreaElement && reasonCount instanceof HTMLElement) {
+      reasonField.addEventListener("input", () => {
+        reasonCount.textContent = `${reasonField.value.length} / 800`;
+      });
+    }
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (form.dataset.formConfigured !== "true") {
+        status.textContent = "El registro seguro de voluntariado aún no está configurado.";
+        return;
+      }
+
+      const results = fields.map((name) => ({ name, valid: validateField(name) }));
+      const firstInvalid = results.find((item) => !item.valid);
+      if (firstInvalid) {
+        status.textContent = "Revisa los campos marcados antes de enviar.";
+        const field = getField(firstInvalid.name);
+        if (field instanceof HTMLElement) {
+          field.focus({ preventScroll: true });
+          field.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        return;
+      }
+
+      if (submitButton instanceof HTMLButtonElement) {
+        submitButton.disabled = true;
+        submitButton.textContent = "Enviando...";
+      }
+      status.textContent = "Protegiendo y registrando tu inscripción...";
+
+      try {
+        const response = await fetch("/api/volunteers", {
+          method: "POST",
+          body: new FormData(form),
+          headers: { accept: "application/json" }
+        });
+        const payload = await response.json();
+
+        if (!response.ok) {
+          if (payload.fieldErrors && typeof payload.fieldErrors === "object") {
+            Object.entries(payload.fieldErrors).forEach(([name, messages]) => {
+              const fieldName = name.replace(
+                /[A-Z]/g,
+                (letter) => `_${letter.toLowerCase()}`
+              ) as FieldName;
+              const message = Array.isArray(messages) ? messages[0] : "";
+              if (fields.includes(fieldName) && typeof message === "string") {
+                showError(fieldName, message);
+              }
+            });
+          }
+          status.textContent =
+            typeof payload.message === "string"
+              ? payload.message
+              : "No pudimos procesar tu inscripción. Inténtalo nuevamente.";
+          window.dispatchEvent(
+            new CustomEvent("volunteer:error", { detail: { errorType: "response_error" } })
+          );
+          return;
+        }
+
+        form.reset();
+        if (reasonCount instanceof HTMLElement) reasonCount.textContent = "0 / 800";
+        status.textContent =
+          typeof payload.message === "string"
+            ? payload.message
+            : "Recibimos tu inscripción. Gracias por sumarte.";
+        window.dispatchEvent(
+          new CustomEvent("volunteer:created", {
+            detail: { status: payload.status ?? "accepted" }
+          })
+        );
+      } catch (error) {
+        console.error(error);
+        status.textContent = "No se pudo registrar tu inscripción. Inténtalo nuevamente.";
+        window.dispatchEvent(
+          new CustomEvent("volunteer:error", { detail: { errorType: "network" } })
+        );
+      } finally {
+        if (submitButton instanceof HTMLButtonElement) {
+          submitButton.disabled = false;
+          submitButton.textContent = "Inscribirme como voluntario";
+        }
+      }
+    });
+  }
+</script>

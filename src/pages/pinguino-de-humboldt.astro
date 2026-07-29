@@ -1,14 +1,5 @@
 ---
-import MainLayout from "../layouts/MainLayout.astro";
-import Section from "../components/ui/Section.astro";
-import Breadcrumbs from "../components/ui/Breadcrumbs.astro";
-import QuirillucaExplorer from "../components/campaign/QuirillucaExplorer.vue";
+export const prerender = false;
 
-const breadcrumbItems = [{ name: "Inicio", path: "/" }, { name: "Quirilluca", path: "/pinguino-de-humboldt" }];
+return Astro.redirect("/quirilluca", 308);
 ---
-<MainLayout path="/pinguino-de-humboldt" title="Quirilluca | Un territorio vivo" description="Conoce los valores naturales, geológicos, culturales y comunitarios de los Acantilados de Quirilluca." keywords={["Quirilluca", "Acantilados de Quirilluca", "Horcón", "Puchuncaví", "patrimonio natural"]} breadcrumbItems={breadcrumbItems} pageType="AboutPage">
-  <Section size="compact">
-    <Breadcrumbs items={breadcrumbItems} class="mb-1" />
-    <QuirillucaExplorer client:load />
-  </Section>
-</MainLayout>

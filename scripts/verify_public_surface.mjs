@@ -25,7 +25,7 @@ await expectIncludes("src/pages/robots.txt.ts", [
 ]);
 
 await expectIncludes("src/pages/sitemap.xml.ts", [
-  "/firma",
+  "/sumate",
   "/transparencia",
   "/contacto",
   "/privacidad"

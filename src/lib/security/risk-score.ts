@@ -12,6 +12,7 @@ export interface RiskSignalInput {
   fingerprintBurstCount: number;
   captchaVerified: boolean;
   highProtectionMode: boolean;
+  promptInjectionSuspected?: boolean;
 }
 
 export interface RiskScoreResult {
@@ -67,6 +68,11 @@ export function scoreSignatureRisk(input: RiskSignalInput): RiskScoreResult {
   if (input.highProtectionMode && !input.captchaVerified) {
     score += 35;
     reasonCodes.push("captcha_missing");
+  }
+
+  if (input.promptInjectionSuspected) {
+    score += 100;
+    reasonCodes.push("prompt_injection_suspected");
   }
 
   if (score >= 80) {

@@ -21,7 +21,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const requestId = crypto.randomUUID();
 
   if (
-    !["/firma", "/eventos/proponer"].includes(context.url.pathname) ||
+    !["/sumate", "/eventos/proponer"].includes(context.url.pathname) ||
     context.request.method !== "GET" ||
     !isSecurityConfigured ||
     !isServerStorageConfigured
@@ -48,7 +48,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     ? { allowed: true, retryAfterSeconds: 0, counts: {} }
     : await enforceRateLimit("signature_form_get", ipHash, securityConfig.rateLimits.formGet, {
         route: context.url.pathname,
-        action: context.url.pathname === "/firma" ? "signature_form_get" : "event_form_get"
+        action: context.url.pathname === "/sumate" ? "participation_form_get" : "event_form_get"
       });
 
   if (result.allowed) {
@@ -70,7 +70,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   logSecurityEvent({
       route: context.url.pathname,
-      action: context.url.pathname === "/firma" ? "signature_form_get" : "event_form_get",
+      action: context.url.pathname === "/sumate" ? "participation_form_get" : "event_form_get",
       decision: "block",
       reasonCodes: ["rate_limited"],
       hashedIp: ipHash,

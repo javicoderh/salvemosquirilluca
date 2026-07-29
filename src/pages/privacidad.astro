@@ -38,8 +38,8 @@ const breadcrumbItems = [
             <h2 class="text-xl font-semibold text-white">1. Responsable del tratamiento</h2>
             <p class="mt-3">
               Salvemos Quirilluca trata los datos
-              personales que se ingresan en este sitio con el único fin de gestionar las firmas, respaldar la
-              campaña ciudadana y, cuando corresponda, mantener comunicación sobre su avance.
+              personales que se ingresan en este sitio con el único fin de gestionar las firmas, las inscripciones
+              de voluntariado, respaldar la campaña ciudadana y, cuando corresponda, mantener comunicación sobre su avance.
             </p>
             <p class="mt-3">
               Correo de contacto:{" "}
@@ -64,6 +64,10 @@ const breadcrumbItems = [
               <li>Consentimientos y preferencias de actualización.</li>
             </ul>
             <p class="mt-3">
+              En el formulario de voluntariado recopilamos nombre completo, correo electrónico, teléfono, motivación
+              para participar y el consentimiento correspondiente.
+            </p>
+            <p class="mt-3">
               Además, para fines operativos y de seguridad, el sistema puede procesar metadatos técnicos mínimos
               asociados al envío, como huellas hash, tiempos de envío y señales de prevención de abuso.
             </p>
@@ -73,6 +77,7 @@ const breadcrumbItems = [
             <h2 class="text-xl font-semibold text-white">3. Finalidad del tratamiento</h2>
             <ul class="mt-3 list-disc space-y-2 pl-5">
               <li>Registrar y gestionar firmas válidas de la campaña.</li>
+              <li>Registrar inscripciones de voluntariado y contactar a las personas según las necesidades de la campaña.</li>
               <li>Evitar duplicados, fraude o abuso del formulario.</li>
               <li>Gestionar apoyos ciudadanos para la protección de Quirilluca.</li>
               <li>Enviar actualizaciones solo a quienes lo autoricen expresamente.</li>
@@ -83,15 +88,15 @@ const breadcrumbItems = [
           <section>
             <h2 class="text-xl font-semibold text-white">4. Base de uso</h2>
             <p class="mt-3">
-              El tratamiento se realiza sobre la base del consentimiento explícito entregado al momento de firmar y de
-              la necesidad operativa de validar, resguardar y administrar el proceso de adhesión a la campaña.
+              El tratamiento se realiza sobre la base del consentimiento explícito entregado al momento de firmar o
+              inscribirse como voluntario, y de la necesidad operativa de validar, resguardar y administrar estos procesos.
             </p>
           </section>
 
           <section>
             <h2 class="text-xl font-semibold text-white">5. Conservación y resguardo</h2>
             <p class="mt-3">
-              Actualmente las nuevas firmas y persistencias operativas del sitio se almacenan en
+              Actualmente las nuevas firmas, inscripciones de voluntariado y persistencias operativas del sitio se almacenan en
               <span class="font-semibold text-white"> Supabase Postgres</span>, dentro de la infraestructura técnica de
               la campaña. Además, existe un repositorio histórico separado en
               <span class="font-semibold text-white"> Firebase Firestore</span> que contiene firmas previas.
@@ -142,7 +147,7 @@ const breadcrumbItems = [
         <p class="text-sm font-semibold uppercase tracking-[0.18em] text-campaign-sky">Resumen</p>
         <ul class="mt-5 space-y-3 text-sm leading-6 text-campaign-text-muted">
           <li class="rounded-2xl border border-white/12 bg-white/5 px-4 py-3">
-            Tus datos se usan para gestionar la firma y la campaña.
+            Tus datos se usan para gestionar la firma, el voluntariado y la campaña.
           </li>
           <li class="rounded-2xl border border-white/12 bg-white/5 px-4 py-3">
             El formulario aplica validación y controles básicos contra abuso.

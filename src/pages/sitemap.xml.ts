@@ -3,11 +3,11 @@ import { campaignConfig } from "../content/campaign";
 
 const publicRoutes = [
   { route: "/", lastmod: "2026-04-06", changefreq: "daily", priority: "1.0" },
-  { route: "/firma", lastmod: "2026-04-06", changefreq: "weekly", priority: "0.9" },
+  { route: "/sumate", lastmod: "2026-07-29", changefreq: "weekly", priority: "0.9" },
   { route: "/eventos", lastmod: "2026-04-06", changefreq: "daily", priority: "0.9" },
   { route: "/eventos/proponer", lastmod: "2026-04-06", changefreq: "weekly", priority: "0.7" },
   { route: "/ciencia", lastmod: "2026-04-06", changefreq: "weekly", priority: "0.85" },
-  { route: "/pinguino-de-humboldt", lastmod: "2026-04-06", changefreq: "monthly", priority: "0.8" },
+  { route: "/quirilluca", lastmod: "2026-07-29", changefreq: "monthly", priority: "0.8" },
   { route: "/monumento-natural-pinguino-de-humboldt", lastmod: "2026-04-06", changefreq: "monthly", priority: "0.8" },
   { route: "/amenazas", lastmod: "2026-04-06", changefreq: "monthly", priority: "0.8" },
   { route: "/faq", lastmod: "2026-04-06", changefreq: "weekly", priority: "0.75" },

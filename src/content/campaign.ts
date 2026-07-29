@@ -1,6 +1,6 @@
 const externalLinks = {
   letterPdf: "",
-  form: "/firma",
+  form: "/sumate",
   linktree: "",
   instagram: "https://www.instagram.com/salvemos.quirilluca/",
   facebook: "https://www.facebook.com/quirillucapatrimonio/",
@@ -129,21 +129,20 @@ export const campaignConfig = {
   },
   navigation: [
     { href: "/", label: "Inicio" },
-    { href: "/pinguino-de-humboldt", label: "Quirilluca" },
+    { href: "/quirilluca", label: "Quirilluca" },
     { href: "/amenazas", label: "La amenaza" },
-    { href: "/transparencia", label: "Nuestra historia" },
+    { href: "/sumate", label: "Súmate" },
     { href: "/ciencia", label: "Documentos" },
     { href: "/noticias", label: "Actualidad" },
-    { href: "/contacto", label: "Contacto" },
-    { href: "/firma", label: "Súmate" }
+    { href: "/contacto", label: "Contacto" }
   ],
   knowledgeHub: [
-    { href: "/pinguino-de-humboldt", label: "El territorio", description: "Acantilados, bosque, mar, geología y memoria de Quirilluca." },
+    { href: "/quirilluca", label: "El territorio", description: "Acantilados, bosque, mar, geología y memoria de Quirilluca." },
     { href: "/amenazas", label: "La amenaza", description: "Maratué y otras presiones sobre Puchuncaví." },
     { href: "/ciencia", label: "Documentos", description: "Fuentes públicas, estudios y resoluciones." },
-    { href: "/transparencia", label: "Nuestra historia", description: "La defensa comunitaria organizada desde 2017." },
+    { href: "/sumate", label: "Súmate", description: "Firma la campaña o participa como voluntario o voluntaria." },
     { href: "/noticias", label: "Actualidad", description: "Hitos y novedades con fecha." },
-    { href: "/contacto", label: "Súmate", description: "Canales oficiales y formas de participar." }
+    { href: "/contacto", label: "Contacto", description: "Canales oficiales de Salvemos Quirilluca." }
   ],
   socialLinks: [
     { href: externalLinks.instagram, label: "Instagram" },

@@ -85,6 +85,12 @@ describe("scoreSignatureRisk", () => {
     expect(result.reasonCodes).toContain("duplicate_signature");
   });
 
+  it("blocks suspected prompt injection", () => {
+    const result = scoreSignatureRisk({ ...cleanInput, promptInjectionSuspected: true });
+    expect(result.decision).toBe("block");
+    expect(result.reasonCodes).toContain("prompt_injection_suspected");
+  });
+
   it("adds captcha_missing score in high protection mode", () => {
     const result = scoreSignatureRisk({
       ...cleanInput,

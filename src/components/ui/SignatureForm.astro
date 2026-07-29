@@ -258,7 +258,7 @@ const formToken = isSecurityConfigured ? await createFormToken("signature_submit
       <button
         type="submit"
         data-signature-submit
-        class="focus-ring inline-flex min-h-12 items-center justify-center rounded-full border border-black/55 bg-campaign-sky px-6 py-3 text-[0.95rem] font-extrabold uppercase tracking-[0.08em] text-campaign-black shadow-[0_18px_60px_rgba(106,141,82,0.2),inset_0_1px_0_rgba(255,255,255,0.18)] transition hover:brightness-105"
+        class="focus-ring button-text-outline inline-flex min-h-12 items-center justify-center rounded-full border border-black/55 bg-campaign-sky px-6 py-3 text-[0.95rem] font-extrabold uppercase tracking-[0.08em] text-white shadow-[0_18px_60px_rgba(106,141,82,0.2),inset_0_1px_0_rgba(255,255,255,0.18)] transition hover:brightness-105"
       >
         {signatureForm.submitLabel}
       </button>
@@ -577,7 +577,7 @@ const formToken = isSecurityConfigured ? await createFormToken("signature_submit
           new CustomEvent("signature:created", {
             detail: {
               status: typeof payload.status === "string" ? payload.status : "accepted",
-              uiSurface: window.location.pathname === "/firma" ? "signature_page" : "embedded_signature_form",
+              uiSurface: window.location.pathname === "/sumate" ? "participation_page" : "embedded_signature_form",
               sourceContext: "campaign_site"
             }
           })
