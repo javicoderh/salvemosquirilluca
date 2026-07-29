@@ -466,15 +466,19 @@ onBeforeUnmount(() => {
 
 .catalogue-card--wide {
   grid-column: span 2;
-  grid-template-columns: minmax(7rem, 0.8fr) 1.2fr;
+  grid-template-columns: minmax(8rem, 1.7fr) minmax(6rem, 0.65fr);
 }
 
 .catalogue-card__image {
   position: relative;
   display: block;
-  min-height: 8rem;
+  min-height: 10rem;
   overflow: hidden;
   background: #24271f;
+}
+
+.catalogue--flora .catalogue-card:first-child .catalogue-card__image {
+  min-height: 7rem;
 }
 
 .catalogue-card__image img {
@@ -505,7 +509,7 @@ onBeforeUnmount(() => {
 .catalogue-card__copy {
   display: flex;
   min-width: 0;
-  padding: 0.72rem;
+  padding: 0.58rem;
   flex-direction: column;
 }
 
@@ -522,7 +526,7 @@ onBeforeUnmount(() => {
 
 .catalogue-card strong {
   margin-top: 0.36rem;
-  font-size: 0.88rem;
+  font-size: 0.78rem;
   line-height: 1.05;
 }
 
@@ -531,7 +535,7 @@ onBeforeUnmount(() => {
   overflow: hidden;
   color: var(--campaign-text-muted);
   font-family: Georgia, serif;
-  font-size: 0.67rem;
+  font-size: 0.6rem;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -543,8 +547,8 @@ onBeforeUnmount(() => {
   justify-content: space-between;
   margin-top: auto;
   padding-top: 0.8rem;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.54rem;
   font-weight: 700;
 }
 
@@ -627,7 +631,7 @@ onBeforeUnmount(() => {
 .catalogue-modal__shell {
   position: relative;
   display: grid;
-  width: min(100%, 58rem);
+  width: min(100%, 70rem);
   max-height: min(90vh, 43rem);
   overflow: auto;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -685,7 +689,7 @@ onBeforeUnmount(() => {
   max-width: 13ch;
   margin-top: 0.35rem;
   color: white;
-  font-size: clamp(1.8rem, 5vw, 3.4rem);
+  font-size: clamp(1.45rem, 3vw, 2.35rem);
   line-height: 0.94;
   letter-spacing: -0.045em;
 }
@@ -707,9 +711,9 @@ onBeforeUnmount(() => {
 .catalogue-modal__story {
   max-width: 42rem;
   margin-top: 1.15rem;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.85rem;
-  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 
 .catalogue-modal__links {
@@ -795,17 +799,21 @@ onBeforeUnmount(() => {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
+  .catalogue--flora .catalogue-card:nth-child(-n + 3) .catalogue-card__image {
+    min-height: 7rem;
+  }
+
   .catalogue-card--wide {
     grid-column: span 2;
   }
 
   .catalogue-modal__shell {
-    grid-template-columns: minmax(18rem, 0.9fr) minmax(22rem, 1.1fr);
+    grid-template-columns: minmax(24rem, 1.8fr) minmax(17rem, 0.62fr);
     overflow: hidden;
   }
 
   .catalogue-modal__visual {
-    min-height: 34rem;
+    min-height: 40rem;
   }
 
   .catalogue-modal__visual img {
@@ -825,6 +833,10 @@ onBeforeUnmount(() => {
 @media (min-width: 1100px) {
   .catalogue__grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .catalogue--flora .catalogue-card:nth-child(-n + 5) .catalogue-card__image {
+    min-height: 7rem;
   }
 }
 

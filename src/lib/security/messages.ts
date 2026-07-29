@@ -11,6 +11,7 @@ export const securityMessages = {
   volunteerSuccess: "Recibimos tu inscripción. Gracias por ofrecer tu tiempo a Quirilluca.",
   volunteerReview: "Recibimos tu inscripción y quedó en una revisión breve.",
   volunteerDuplicate: "Este correo ya tiene una inscripción de voluntariado registrada o en revisión.",
+  volunteerPortalInvalidCredentials: "La contraseña no es válida.",
   adminInvalidCredentials: "Las credenciales no son válidas.",
   adminUnauthorized: "Necesitas iniciar sesión para realizar esta acción."
 } as const;

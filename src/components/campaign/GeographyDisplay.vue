@@ -294,8 +294,8 @@ const economy = [
   inset: 0;
   content: "";
   background:
-    linear-gradient(180deg, transparent 35%, rgba(7, 9, 6, 0.84) 100%),
-    linear-gradient(90deg, rgba(7, 9, 6, 0.45), transparent 65%);
+    linear-gradient(180deg, transparent 58%, rgba(7, 9, 6, 0.65) 100%),
+    linear-gradient(90deg, rgba(7, 9, 6, 0.16), transparent 55%);
 }
 
 .geo-display__panorama > img {
@@ -311,7 +311,7 @@ const economy = [
   bottom: 4.6rem;
   left: clamp(1.25rem, 4vw, 3rem);
   z-index: 1;
-  max-width: 42rem;
+  max-width: 30rem;
 }
 
 .geo-display__panorama-copy span {
@@ -325,7 +325,7 @@ const economy = [
 .geo-display__panorama-copy strong {
   display: block;
   margin-top: 0.5rem;
-  font-size: clamp(1.8rem, 5vw, 4.4rem);
+  font-size: clamp(1.35rem, 3.2vw, 2.5rem);
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: -0.045em;
@@ -407,7 +407,7 @@ const economy = [
   position: absolute;
   inset: 0;
   content: "";
-  background: linear-gradient(180deg, transparent 30%, rgba(7, 9, 6, 0.94) 100%);
+  background: linear-gradient(180deg, transparent 58%, rgba(7, 9, 6, 0.72) 100%);
 }
 
 .geo-layer img {
@@ -433,9 +433,17 @@ const economy = [
 
 .geo-layer h3 {
   margin-top: 0.35rem;
-  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-size: clamp(1.25rem, 2.2vw, 1.8rem);
   font-weight: 900;
   line-height: 1;
+}
+
+.geo-layer p {
+  max-width: 28rem;
+  margin-top: 0.45rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.7rem;
+  line-height: 1.42;
 }
 
 .geo-display__map-grid {
@@ -462,7 +470,7 @@ const economy = [
 .geo-display__place h3,
 .geo-display__economy h3 {
   margin-top: 0.35rem;
-  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-size: clamp(1.35rem, 3vw, 2.15rem);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.035em;
@@ -575,21 +583,23 @@ const economy = [
 }
 
 .political-map figcaption {
-  padding: 1rem 1.4rem 1.4rem;
-  color: rgba(255, 255, 255, 0.45);
-  font-size: 0.7rem;
-  line-height: 1.55;
+  padding: 0.7rem 1.4rem 1rem;
+  color: rgba(255, 255, 255, 0.36);
+  font-size: 0.62rem;
+  line-height: 1.45;
 }
 
 .geo-display__place {
+  display: flex;
+  flex-direction: column;
   padding: 1.4rem;
 }
 
 .geo-display__place > p {
-  margin-top: 1.1rem;
+  margin-top: 0.75rem;
   color: var(--campaign-text-muted);
-  font-size: 0.9rem;
-  line-height: 1.7;
+  font-size: 0.76rem;
+  line-height: 1.5;
 }
 
 .geo-display__place dl {
@@ -620,8 +630,9 @@ const economy = [
 }
 
 .geo-display__place-image {
-  height: 15rem;
-  margin-top: 1rem;
+  order: -1;
+  height: clamp(20rem, 38vw, 28rem);
+  margin: -1.4rem -1.4rem 1rem;
   overflow: hidden;
   border-radius: 1rem;
 }
@@ -680,17 +691,17 @@ const economy = [
   margin-top: 3.5rem;
   border-radius: 1.5rem;
   background:
-    linear-gradient(rgba(8, 10, 7, 0.7), rgba(8, 10, 7, 0.86)),
+    linear-gradient(rgba(8, 10, 7, 0.24), rgba(8, 10, 7, 0.58)),
     url("/assets/quirilluca/LSQ-12_paisaje_acantilados_02.jpg") center / cover;
   padding: 2rem;
   text-align: center;
 }
 
 .geo-display__closing p {
-  max-width: 48rem;
-  color: rgba(255, 255, 255, 0.74);
+  max-width: 34rem;
+  color: rgba(255, 255, 255, 0.66);
   font-family: Georgia, serif;
-  font-size: clamp(1.25rem, 3.5vw, 2.2rem);
+  font-size: clamp(1rem, 2.4vw, 1.5rem);
   line-height: 1.45;
 }
 

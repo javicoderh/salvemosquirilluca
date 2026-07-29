@@ -234,6 +234,26 @@ export const securityConfig = {
         )
       }
     ] satisfies RateLimitRule[],
+    volunteerPortalLoginIp: [
+      {
+        name: "burst",
+        windowMs: 1000 * 60 * 15,
+        maxHits: withAttackMode(
+          parseNumber(import.meta.env.SECURITY_VOLUNTEER_PORTAL_LOGIN_BURST_LIMIT, 5),
+          parseNumber(import.meta.env.SECURITY_ATTACK_VOLUNTEER_PORTAL_LOGIN_BURST_LIMIT, 3),
+          highProtectionMode
+        )
+      },
+      {
+        name: "window",
+        windowMs: 1000 * 60 * 60 * 4,
+        maxHits: withAttackMode(
+          parseNumber(import.meta.env.SECURITY_VOLUNTEER_PORTAL_LOGIN_WINDOW_LIMIT, 12),
+          parseNumber(import.meta.env.SECURITY_ATTACK_VOLUNTEER_PORTAL_LOGIN_WINDOW_LIMIT, 6),
+          highProtectionMode
+        )
+      }
+    ] satisfies RateLimitRule[],
     adminLoginIp: [
       {
         name: "burst",

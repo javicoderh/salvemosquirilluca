@@ -230,6 +230,18 @@ async function createSchema(sql: Sql) {
     await tx`create index if not exists volunteer_submissions_status_created_idx on volunteer_submissions (status, created_at_ms desc)`;
 
     await tx`
+      create table if not exists volunteer_portal_credentials (
+        credential_key text primary key,
+        password_hash text not null,
+        password_salt text not null,
+        password_iterations integer not null,
+        active boolean not null default true,
+        created_at_ms bigint not null,
+        updated_at_ms bigint not null
+      )
+    `;
+
+    await tx`
       create table if not exists admin_users (
         id uuid primary key,
         username text not null unique,

@@ -48,6 +48,17 @@ try {
       create index if not exists volunteer_submissions_status_created_idx
       on volunteer_submissions (status, created_at_ms desc)
     `;
+    await tx`
+      create table if not exists volunteer_portal_credentials (
+        credential_key text primary key,
+        password_hash text not null,
+        password_salt text not null,
+        password_iterations integer not null,
+        active boolean not null default true,
+        created_at_ms bigint not null,
+        updated_at_ms bigint not null
+      )
+    `;
   });
 
   const columns = await sql`
@@ -62,7 +73,20 @@ try {
     throw new Error(`Esquema inesperado: se encontraron ${columns.length} columnas.`);
   }
 
-  console.log(`volunteer_submissions lista (${columns.length} columnas).`);
+  const credentialTable = await sql`
+    select exists(
+      select 1
+      from information_schema.tables
+      where table_schema = 'public'
+        and table_name = 'volunteer_portal_credentials'
+    ) as exists
+  `;
+
+  if (!credentialTable[0]?.exists) {
+    throw new Error("No se pudo verificar volunteer_portal_credentials.");
+  }
+
+  console.log(`volunteer_submissions lista (${columns.length} columnas) y credenciales preparadas.`);
 } finally {
   await sql.end({ timeout: 5 });
 }

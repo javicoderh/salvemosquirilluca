@@ -26,6 +26,32 @@ export interface StoredVolunteerInput {
   };
 }
 
+export interface VolunteerPortalCredential {
+  passwordHash: string;
+  passwordSalt: string;
+  passwordIterations: number;
+  active: boolean;
+}
+
+export interface VolunteerListItem {
+  id: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  reason: string;
+  consent: boolean;
+  status: "accepted" | "flagged";
+  createdAtMs: number;
+}
+
+export interface VolunteerListResult {
+  items: VolunteerListItem[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
+}
+
 export async function volunteerSubmissionExists(emailHash: string) {
   if (isPostgresAvailable) {
     const rows = await withPostgres((sql) => sql`
@@ -92,4 +118,88 @@ export async function storeVolunteerSubmission(input: StoredVolunteerInput) {
   });
 
   return id;
+}
+
+export async function getVolunteerPortalCredential(): Promise<VolunteerPortalCredential | null> {
+  if (!isPostgresAvailable) return null;
+
+  const rows = await withPostgres((sql) => sql`
+    select password_hash, password_salt, password_iterations, active
+    from volunteer_portal_credentials
+    where credential_key = 'volunteer-list'
+    limit 1
+  `);
+  const row = rows[0];
+  if (!row) return null;
+
+  return {
+    passwordHash: String(row.password_hash ?? ""),
+    passwordSalt: String(row.password_salt ?? ""),
+    passwordIterations: Number(row.password_iterations ?? 0),
+    active: Boolean(row.active)
+  };
+}
+
+export async function listVolunteerSubmissions(params: {
+  search?: string;
+  status?: "accepted" | "flagged" | "all";
+  page?: number;
+  pageSize?: number;
+} = {}): Promise<VolunteerListResult> {
+  if (!isPostgresAvailable) {
+    return { items: [], total: 0, page: 1, pageSize: 100, totalPages: 1 };
+  }
+
+  const search = (params.search ?? "").trim().slice(0, 120);
+  const status = params.status ?? "all";
+  const page = Math.max(1, Math.floor(params.page ?? 1));
+  const pageSize = Math.min(100, Math.max(1, Math.floor(params.pageSize ?? 100)));
+  const offset = (page - 1) * pageSize;
+  const searchPattern = `%${search}%`;
+
+  const [countRows, rows] = await Promise.all([
+    withPostgres((sql) => sql`
+      select count(*)::int as total
+      from volunteer_submissions
+      where (
+        ${search === ""}
+        or full_name ilike ${searchPattern}
+        or email ilike ${searchPattern}
+        or phone ilike ${searchPattern}
+      )
+      and (${status === "all"} or status = ${status})
+    `),
+    withPostgres((sql) => sql`
+      select id, full_name, email, phone, reason, consent, status, created_at_ms
+      from volunteer_submissions
+      where (
+        ${search === ""}
+        or full_name ilike ${searchPattern}
+        or email ilike ${searchPattern}
+        or phone ilike ${searchPattern}
+      )
+      and (${status === "all"} or status = ${status})
+      order by created_at_ms desc
+      limit ${pageSize}
+      offset ${offset}
+    `)
+  ]);
+
+  const total = Number(countRows[0]?.total ?? 0);
+  return {
+    items: rows.map((row) => ({
+      id: String(row.id),
+      fullName: String(row.full_name ?? ""),
+      email: String(row.email ?? ""),
+      phone: String(row.phone ?? ""),
+      reason: String(row.reason ?? ""),
+      consent: Boolean(row.consent),
+      status: row.status === "flagged" ? "flagged" : "accepted",
+      createdAtMs: Number(row.created_at_ms ?? 0)
+    })),
+    total,
+    page,
+    pageSize,
+    totalPages: Math.max(1, Math.ceil(total / pageSize))
+  };
 }

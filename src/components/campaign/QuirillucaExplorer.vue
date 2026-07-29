@@ -143,13 +143,15 @@ function selectSection(section: TerritorySection) {
 
 .quirilluca-intro__veil {
   background:
-    linear-gradient(180deg, rgba(7, 9, 6, 0.15), rgba(7, 9, 6, 0.95) 92%),
-    linear-gradient(90deg, rgba(7, 9, 6, 0.78), transparent 75%);
+    linear-gradient(180deg, rgba(7, 9, 6, 0.03) 42%, rgba(7, 9, 6, 0.78) 100%),
+    linear-gradient(90deg, rgba(7, 9, 6, 0.38), transparent 68%);
 }
 
 .quirilluca-intro__copy {
   position: relative;
   z-index: 1;
+  align-self: end;
+  max-width: 46rem;
   padding: clamp(1.15rem, 3vw, 2.35rem);
 }
 
@@ -165,7 +167,7 @@ function selectSection(section: TerritorySection) {
   max-width: 12ch;
   margin-top: 0.6rem;
   color: white;
-  font-size: clamp(2.3rem, 5.8vw, 4.8rem);
+  font-size: clamp(2rem, 4.4vw, 3.65rem);
   font-weight: 900;
   line-height: 0.84;
   letter-spacing: -0.065em;
@@ -181,15 +183,15 @@ function selectSection(section: TerritorySection) {
 
 .quirilluca-intro__text {
   display: grid;
-  max-width: 54rem;
-  gap: 0.7rem;
+  max-width: 40rem;
+  gap: 0.35rem;
   margin-top: 0.95rem;
 }
 
 .quirilluca-intro__text p {
-  color: rgba(255, 255, 255, 0.77);
-  font-size: 0.8rem;
-  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.72rem;
+  line-height: 1.48;
 }
 
 .quirilluca-intro__prompt {
@@ -256,7 +258,7 @@ function selectSection(section: TerritorySection) {
 .territory-choice__veil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(6, 8, 5, 0.05), rgba(6, 8, 5, 0.9));
+  background: linear-gradient(180deg, transparent 56%, rgba(6, 8, 5, 0.72) 100%);
 }
 
 .territory-choice__index {
@@ -265,22 +267,22 @@ function selectSection(section: TerritorySection) {
   left: 1rem;
   z-index: 1;
   display: grid;
-  width: 2.35rem;
-  height: 2.35rem;
+  width: 2rem;
+  height: 2rem;
   place-items: center;
   border: 1px solid rgba(255, 255, 255, 0.34);
   border-radius: 999px;
-  background: rgba(7, 9, 6, 0.38);
-  font-size: 0.68rem;
+  background: rgba(7, 9, 6, 0.24);
+  font-size: 0.6rem;
   font-weight: 800;
   backdrop-filter: blur(10px);
 }
 
 .territory-choice__copy {
   position: absolute;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  left: 1.25rem;
+  right: 0.9rem;
+  bottom: 0.9rem;
+  left: 0.9rem;
   z-index: 1;
   display: flex;
   flex-direction: column;
@@ -288,16 +290,16 @@ function selectSection(section: TerritorySection) {
 }
 
 .territory-choice__copy small {
-  color: #d6a85f;
-  font-size: 0.65rem;
+  color: rgba(214, 168, 95, 0.82);
+  font-size: 0.56rem;
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .territory-choice__copy strong {
-  margin-top: 0.25rem;
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-top: 0.18rem;
+  font-size: clamp(1.35rem, 3vw, 2.25rem);
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.045em;
@@ -307,9 +309,9 @@ function selectSection(section: TerritorySection) {
   display: flex;
   gap: 0.7rem;
   align-items: center;
-  margin-top: 1rem;
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.72rem;
+  margin-top: 0.4rem;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.58rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -351,10 +353,6 @@ function selectSection(section: TerritorySection) {
 }
 
 @media (min-width: 760px) {
-  .quirilluca-intro__text {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .territory-choices {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
