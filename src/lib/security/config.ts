@@ -47,10 +47,8 @@ export const securityConfig = {
     parseCsv(import.meta.env.SECURITY_ALLOWED_ORIGINS).length > 0
       ? parseCsv(import.meta.env.SECURITY_ALLOWED_ORIGINS)
       : [
-          "https://esmasqueunpinguino.cl",
-          "https://www.esmasqueunpinguino.cl",
-          "https://masqueunpinguino.cl",
-          "https://www.masqueunpinguino.cl",
+          "https://salvemosquirilluca.cl",
+          "https://www.salvemosquirilluca.cl",
           "http://localhost:4321",
           "http://127.0.0.1:4321"
         ],

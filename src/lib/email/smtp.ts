@@ -123,7 +123,7 @@ export async function sendEmail(params: SendEmailParams) {
         }
 
         if (stage === 0 && code === 220) {
-          sendLine("EHLO esmasqueunpinguino.local");
+          sendLine("EHLO salvemosquirilluca.local");
           stage = 1;
         } else if (stage === 1 && code === 250) {
           sendLine("AUTH LOGIN");

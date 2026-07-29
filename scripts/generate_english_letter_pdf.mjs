@@ -17,7 +17,7 @@ const doc = new PDFDocument({
   margins: { top: 70, bottom: 70, left: 72, right: 72 },
   info: {
     Title: "Concern for the Conservation Status of the Humboldt Penguin in Chile",
-    Author: "Scientific Community — Es más que un pingüino Campaign",
+    Author: "Salvemos Quirilluca",
     Subject: "Open letter requesting reinstatement of the Natural Monument decree for the Humboldt Penguin",
     Keywords: "Humboldt Penguin, Natural Monument, Chile, conservation, open letter, scientific community",
     CreationDate: new Date("2026-04-01")
@@ -42,7 +42,7 @@ doc.rect(0, 0, doc.page.width, 6).fill(sky);
 // ── Header ────────────────────────────────────────────────────────────────────
 doc.moveDown(0.6);
 doc.font("Helvetica-Bold").fontSize(7.5).fillColor(sky)
-  .text("ES MÁS QUE UN PINGÜINO  ·  CITIZEN CAMPAIGN  ·  esmasqueunpinguino.cl",
+  .text("SALVEMOS QUIRILLUCA  ·  COMMUNITY ORGANIZATION  ·  salvemosquirilluca.cl",
         { align: "center", characterSpacing: 1.2 });
 
 doc.moveDown(1);
@@ -193,7 +193,7 @@ doc.moveTo(72, doc.y).lineTo(72 + W, doc.y).strokeColor(rule).lineWidth(0.5).str
 doc.moveDown(0.5);
 doc.font("Helvetica").fontSize(8.5).fillColor(muted)
   .text(
-    "Sign and learn more at esmasqueunpinguino.cl  ·  Signature collection open until April 20, 2026  ·  @esmasqueunpinguino",
+    "Sign and learn more at salvemosquirilluca.cl  ·  Community action for Quirilluca",
     { align: "center" }
   );
 

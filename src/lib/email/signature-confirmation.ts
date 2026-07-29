@@ -20,20 +20,20 @@ export async function sendSignatureConfirmationEmail(input: SignatureConfirmatio
 
   const subject =
     input.status === "accepted"
-      ? "Tu firma fue registrada en Es más que un pingüino"
-      : "Recibimos tu firma para Es más que un pingüino";
+      ? "Tu firma fue registrada en Salvemos Quirilluca"
+      : "Recibimos tu firma para Salvemos Quirilluca";
 
   const greetingName = input.fullName.trim() || "Hola";
 
   const statusLine =
     input.status === "accepted"
-      ? "Tu firma quedó registrada para la campaña ciudadana <strong>Es más que un pingüino</strong>."
-      : "Recibimos tu firma para la campaña ciudadana <strong>Es más que un pingüino</strong> y quedó en una revisión breve antes de su publicación.";
+      ? "Tu firma quedó registrada para la organización comunitaria <strong>Salvemos Quirilluca</strong>."
+      : "Recibimos tu firma para <strong>Salvemos Quirilluca</strong> y quedó en una revisión breve antes de su publicación.";
 
   const statusLinePlain =
     input.status === "accepted"
-      ? "Tu firma quedó registrada para la campaña ciudadana Es más que un pingüino."
-      : "Recibimos tu firma para la campaña ciudadana Es más que un pingüino y quedó en una revisión breve antes de su publicación.";
+      ? "Tu firma quedó registrada para la organización comunitaria Salvemos Quirilluca."
+      : "Recibimos tu firma para Salvemos Quirilluca y quedó en una revisión breve antes de su publicación.";
 
   const disputeLine = input.rut
     ? "Si tú no realizaste esta firma, responde este correo indicando que no firmaste y escribe tu RUT para que podamos ubicar y eliminar el registro de la campaña."
@@ -44,13 +44,13 @@ export async function sendSignatureConfirmationEmail(input: SignatureConfirmatio
     "",
     statusLinePlain,
     "",
-    "Gracias por sumarte a esta campaña ciudadana por la protección del pingüino de Humboldt.",
+    "Gracias por sumarte a la defensa y protección de Quirilluca.",
     "",
     disputeLine,
     "",
     `Correo de contacto: ${supportEmail}`,
     "",
-    "Equipo Es más que un pingüino",
+    "Equipo Salvemos Quirilluca",
     siteUrl
   ].join("\n");
 

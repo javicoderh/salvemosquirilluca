@@ -4,7 +4,7 @@ import vue from "@astrojs/vue";
 import vercel from "@astrojs/vercel";
 
 export default defineConfig({
-  site: "https://esmasqueunpinguino.cl",
+  site: "https://salvemosquirilluca.cl",
   output: "server",
   adapter: vercel({}),
   integrations: [vue()],

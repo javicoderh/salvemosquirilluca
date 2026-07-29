@@ -1,6 +1,6 @@
-# Es más que un pingüino
+# Salvemos Quirilluca
 
-Sitio de campaña construido con Astro para movilización ciudadana en torno a la protección del pingüino de Humboldt. El proyecto resuelve tres frentes al mismo tiempo:
+Sitio de la organización comunitaria Salvemos Quirilluca, construido con Astro para informar, movilizar y reunir apoyo por la protección de los Acantilados de Quirilluca.
 
 - comunicación pública clara
 - captación y conteo de firmas
@@ -32,14 +32,12 @@ Hoy el sitio corre con SSR sobre Vercel, persiste firmas en Supabase Postgres cu
 
 El dominio canónico actual es:
 
-- `https://esmasqueunpinguino.cl`
+- `https://salvemosquirilluca.cl`
 
 El backend acepta también estos origins para no romper redirecciones ni dominios alternativos:
 
-- `https://esmasqueunpinguino.cl`
-- `https://www.esmasqueunpinguino.cl`
-- `https://masqueunpinguino.cl`
-- `https://www.masqueunpinguino.cl`
+- `https://salvemosquirilluca.cl`
+- `https://www.salvemosquirilluca.cl`
 
 ## Scripts
 
@@ -284,7 +282,7 @@ Variables mínimas para firmar de verdad con Supabase:
 
 ```bash
 SECURITY_HASH_SECRET=
-SECURITY_ALLOWED_ORIGINS=https://esmasqueunpinguino.cl,https://www.esmasqueunpinguino.cl,https://masqueunpinguino.cl,https://www.masqueunpinguino.cl,http://localhost:4321
+SECURITY_ALLOWED_ORIGINS=https://salvemosquirilluca.cl,https://www.salvemosquirilluca.cl,http://localhost:4321
 
 POSTGRES_URL=
 POSTGRES_URL_NON_POOLING=
@@ -414,8 +412,8 @@ Los RUT se limpian, rescatan y validan antes de generar el archivo listo para im
 
 El proyecto hoy está pensado para:
 
-- canónico: `esmasqueunpinguino.cl`
-- secundarios/redirección: `www.esmasqueunpinguino.cl`, `masqueunpinguino.cl`, `www.masqueunpinguino.cl`
+- canónico: `salvemosquirilluca.cl`
+- secundario/redirección: `www.salvemosquirilluca.cl`
 
 ### DNS
 

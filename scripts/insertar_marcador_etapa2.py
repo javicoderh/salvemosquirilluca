@@ -62,7 +62,7 @@ async def main():
         MARKER_ID,
         "MARCADOR", "SISTEMA", "MARCADOR SISTEMA",
         "ETAPA2-INICIO",
-        "marcador-etapa2@esmasqueunpinguino.cl",
+        "marcador-etapa2@salvemosquirilluca.cl",
         "0", "CL", "natural",
         "Sistema", "Sistema",
         "Marcador interno de campaña — no es una firma ciudadana",

@@ -388,7 +388,7 @@ COVER_HTML = """
   <div class="cover-circle-2"></div>
   <div class="cover-penguin">🐧</div>
   <div class="cover-content">
-    <div class="cover-eyebrow">Campaña Ciudadana · Es más que un pingüino</div>
+    <div class="cover-eyebrow">Organización comunitaria · Salvemos Quirilluca</div>
     <div class="cover-title">Informe de<br>Integridad de Firmas</div>
     <div class="cover-subtitle">Análisis de validez, estadísticas y mensajes ciudadanos</div>
     <div class="cover-meta">
@@ -495,7 +495,7 @@ def build_full_html(md_path: str) -> str:
 <html lang="es">
 <head>
   <meta charset="utf-8">
-  <title>Informe de Integridad de Firmas · Es más que un pingüino</title>
+  <title>Informe de Integridad de Firmas · Salvemos Quirilluca</title>
 </head>
 <body>
   {COVER_HTML}
@@ -503,7 +503,7 @@ def build_full_html(md_path: str) -> str:
     {body_html}
     <p class="footer-note">
       Análisis realizado sobre datos extraídos directamente de PostgreSQL (Supabase) y Firebase Firestore
-      el 25 de abril de 2026. Documento de uso interno — campaña Es más que un pingüino.
+      el 25 de abril de 2026. Documento de uso interno — Salvemos Quirilluca.
     </p>
   </div>
 </body>

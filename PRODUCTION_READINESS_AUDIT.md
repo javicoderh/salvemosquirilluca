@@ -27,7 +27,7 @@ Pendientes principales fuera del repo:
 | Semantic HTML / legibility | OK | [src/layouts/MainLayout.astro](/home/javier/Documents/salvemos-humboldt/src/layouts/MainLayout.astro) usa `main`; las páginas públicas ya usan `h1` vía [src/components/ui/SectionHeading.astro](/home/javier/Documents/salvemos-humboldt/src/components/ui/SectionHeading.astro) | No | Mantener un `h1` por página y SSR para contenido principal |
 | Status codes | Partial | [src/pages/api/signatures/count.ts](/home/javier/Documents/salvemos-humboldt/src/pages/api/signatures/count.ts) devuelve `503` en fallo; [src/pages/404.astro](/home/javier/Documents/salvemos-humboldt/src/pages/404.astro) existe | Parcial | Verificar en hosting que redirects y 404 del edge se comporten igual que local/build |
 | Redirects | Partial | Hay canonical y compatibilidad de sitemap antiguo, pero no hay reglas repo para `www/non-www/http/https` | Sí | Configurar redirects canónicos en Vercel o proveedor DNS/edge |
-| Mail-config readiness | Unknown | El repo solo expone correo de contacto en [src/content/campaign.ts](/home/javier/Documents/salvemos-humboldt/src/content/campaign.ts); no hay dominio de correo operativo configurado | Sí | Definir si se usará `@esmasqueunpinguino.cl`; si sí, configurar MX, SPF, DKIM, DMARC |
+| Mail-config readiness | Unknown | El repo expone `contacto@salvemosquirilluca.cl` en [src/content/campaign.ts](/home/javier/Documents/salvemos-humboldt/src/content/campaign.ts); falta confirmar la configuración operativa del dominio | Sí | Configurar y verificar MX, SPF, DKIM y DMARC para `@salvemosquirilluca.cl` |
 | TXT records readiness | Unknown | No hay infraestructura DNS versionada en el repo | Sí | Verificar/crear TXT para SPF, DMARC, DKIM y cualquier verificación de proveedor |
 | TLS / cipher suites / client support | Unknown | El repo usa HTTPS canónico en [astro.config.ts](/home/javier/Documents/salvemos-humboldt/astro.config.ts), pero no controla la negociación TLS final | Sí | Validar en el edge/CDN con Webcheck, SSL Labs o `openssl s_client` |
 | Tech stack visibility | Partial | El stack es inferible por [package.json](/home/javier/Documents/salvemos-humboldt/package.json) y [README.md](/home/javier/Documents/salvemos-humboldt/README.md), pero Webcheck puede no detectarlo desde headers | Parcial | No hace falta cambiar el sitio por esto; como mucho, revisar si el deploy está ocultando señales útiles o generando respuestas genéricas |
@@ -70,12 +70,12 @@ Pendientes principales fuera del repo:
 
 ## Final Checklist Before Production
 
-- [ ] `https://esmasqueunpinguino.cl/robots.txt` responde `200`
-- [ ] `https://esmasqueunpinguino.cl/sitemap.xml` responde `200`
-- [ ] `https://esmasqueunpinguino.cl/.well-known/security.txt` responde `200`
-- [ ] `curl -I https://esmasqueunpinguino.cl` muestra `Strict-Transport-Security`
-- [ ] `curl -I http://esmasqueunpinguino.cl` redirige a HTTPS
-- [ ] `curl -I https://www.esmasqueunpinguino.cl` redirige al host canónico elegido
+- [ ] `https://salvemosquirilluca.cl/robots.txt` responde `200`
+- [ ] `https://salvemosquirilluca.cl/sitemap.xml` responde `200`
+- [ ] `https://salvemosquirilluca.cl/.well-known/security.txt` responde `200`
+- [ ] `curl -I https://salvemosquirilluca.cl` muestra `Strict-Transport-Security`
+- [ ] `curl -I http://salvemosquirilluca.cl` redirige a HTTPS
+- [ ] `curl -I https://www.salvemosquirilluca.cl` redirige al host canónico elegido
 - [ ] Open Graph y Twitter cards renderizan bien en validadores externos
 - [ ] MX, SPF, DKIM y DMARC están definidos si se usará correo del dominio
 - [ ] No quedan enlaces editoriales vacíos en contenido público
