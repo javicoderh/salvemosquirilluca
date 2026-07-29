@@ -16,7 +16,7 @@ const posterSrc = "/assets/feline-scroll/feline-poster.webp";
   <video
     class="scroll-feline__video"
     data-scroll-feline-video
-    data-scroll-feline-sequence-duration="8.03"
+    data-scroll-feline-sequence-duration="16.05"
     width="360"
     height="540"
     muted
@@ -48,10 +48,9 @@ const posterSrc = "/assets/feline-scroll/feline-poster.webp";
         1,
         document.documentElement.scrollHeight - window.innerHeight
       );
-      const animationScrollRange = maxScroll * 0.8;
       targetProgress = Math.min(
         1,
-        Math.max(0, window.scrollY / animationScrollRange)
+        Math.max(0, window.scrollY / maxScroll)
       );
     };
 
