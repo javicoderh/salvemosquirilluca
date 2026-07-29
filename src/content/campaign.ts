@@ -81,8 +81,8 @@ export const campaignConfig = {
       "Quirilluca se ubica entre Horcón y Maitencillo, en Puchuncaví. Es un Sitio Prioritario para la Conservación de la Biodiversidad y enfrenta presiones de proyectos de gran escala, mientras la comunidad busca protección oficial y participación informada.",
     cards: [
       { value: "1.045 ha", label: "Ex Fundo Quirilluca", detail: "Un sistema costero de acantilados, bosque, quebradas y mar." },
-      { value: "14.180", label: "Viviendas proyectadas", detail: "Cifra del proyecto Maratué vigente a julio de 2026." },
-      { value: "2017", label: "Defensa organizada", detail: "Año en que la comunidad comenzó a articularse frente al conflicto." }
+      { value: "14.180", label: "Viviendas proyectadas", detail: "14.180 viviendas proyectadas por Maratué, cifra vigente a julio de 2026." },
+      { value: "2017", label: "Defensa organizada", detail: "En 2017 la comunidad comenzó a articularse frente al conflicto." }
     ]
   },
   ecosystem: {

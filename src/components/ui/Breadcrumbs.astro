@@ -6,13 +6,14 @@ export interface BreadcrumbItem {
 
 interface Props {
   items: BreadcrumbItem[];
+  class?: string;
 }
 
-const { items } = Astro.props;
+const { items, class: className = "mb-6" } = Astro.props;
 ---
 
 {items.length > 0 && (
-  <nav aria-label="Breadcrumb" class="mb-6">
+  <nav aria-label="Breadcrumb" class={className}>
     <ol class="flex flex-wrap items-center gap-2 text-sm text-campaign-text-muted">
       {items.map((item, index) => {
         const isCurrent = index === items.length - 1;
