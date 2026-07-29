@@ -3,6 +3,7 @@ import FooterBlock from "../components/ui/FooterBlock.astro";
 import SiteHeader from "../components/layout/SiteHeader.astro";
 import FloatingCTA from "../components/ui/FloatingCTA.astro";
 import FloatingSignatureCounter from "../components/ui/FloatingSignatureCounter.astro";
+import ScrollFeline from "../components/ui/ScrollFeline.astro";
 import { campaignConfig } from "../content/campaign";
 import { analyticsFormNames, gaEventNames, gaMeasurementId, isGaEnabled } from "../lib/analytics";
 import "../styles/global.css";
@@ -241,6 +242,7 @@ const structuredData = [
       <slot />
     </main>
     <FooterBlock />
+    <ScrollFeline />
     {!hideFloatingCta && <FloatingCTA href="/firma" label={campaignConfig.hero.buttons.floating} />}
     <div hidden aria-hidden="true" style="display: none !important;">
       <FloatingSignatureCounter />

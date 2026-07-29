@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Preparar animación transparente"
+  short_description: "Extrae y enmascara videos para scroll"
+  default_prompt: "Usa $prepare-transparent-scroll-animation para convertir un video en una animación WebM transparente controlada por scroll."

@@ -1,0 +1,204 @@
+---
+const videoSrc = "/assets/feline-scroll/feline-scroll.webm";
+const posterSrc = "/assets/feline-scroll/feline-poster.webp";
+---
+
+<aside class="scroll-feline" data-scroll-feline aria-hidden="true">
+  <img
+    class="scroll-feline__poster"
+    src={posterSrc}
+    width="360"
+    height="540"
+    alt=""
+    loading="eager"
+    decoding="async"
+  />
+  <video
+    class="scroll-feline__video"
+    data-scroll-feline-video
+    data-scroll-feline-sequence-duration="8.03"
+    width="360"
+    height="540"
+    muted
+    playsinline
+    preload="auto"
+    poster={posterSrc}
+    tabindex="-1"
+  >
+    <source src={videoSrc} type="video/webm" />
+  </video>
+</aside>
+
+<script>
+  const initializeScrollFeline = (root: Element) => {
+    const video = root.querySelector("[data-scroll-feline-video]");
+    if (!(root instanceof HTMLElement) || !(video instanceof HTMLVideoElement)) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const frameDuration = 1 / 20;
+    const configuredDuration = Number(video.dataset.scrollFelineSequenceDuration);
+    let duration = 8.05;
+    let targetProgress = 0;
+    let renderedProgress = 0;
+    let animationFrame = 0;
+    let lastSeekAt = 0;
+
+    const readProgress = () => {
+      const maxScroll = Math.max(
+        1,
+        document.documentElement.scrollHeight - window.innerHeight
+      );
+      const animationScrollRange = maxScroll * 0.8;
+      targetProgress = Math.min(
+        1,
+        Math.max(0, window.scrollY / animationScrollRange)
+      );
+    };
+
+    const render = (timestamp: number) => {
+      animationFrame = 0;
+      if (reducedMotion.matches || video.readyState < HTMLMediaElement.HAVE_METADATA) return;
+
+      const distance = targetProgress - renderedProgress;
+      renderedProgress = Math.abs(distance) < 0.001
+        ? targetProgress
+        : renderedProgress + distance * 0.2;
+
+      const targetTime = Math.min(
+        Math.max(0, duration - frameDuration),
+        renderedProgress * duration
+      );
+
+      if (
+        timestamp - lastSeekAt >= frameDuration * 1000 &&
+        Math.abs(video.currentTime - targetTime) >= frameDuration * 0.6
+      ) {
+        video.currentTime = targetTime;
+        lastSeekAt = timestamp;
+      }
+
+      if (Math.abs(targetProgress - renderedProgress) >= 0.001) {
+        animationFrame = window.requestAnimationFrame(render);
+      }
+    };
+
+    const scheduleRender = () => {
+      readProgress();
+      if (!animationFrame) {
+        animationFrame = window.requestAnimationFrame(render);
+      }
+    };
+
+    const updateMotionPreference = () => {
+      root.classList.toggle("is-reduced-motion", reducedMotion.matches);
+      if (reducedMotion.matches) {
+        if (animationFrame) window.cancelAnimationFrame(animationFrame);
+        animationFrame = 0;
+        video.pause();
+        return;
+      }
+      scheduleRender();
+    };
+
+    video.addEventListener("loadedmetadata", () => {
+      if (Number.isFinite(video.duration) && video.duration > 0) {
+        duration = Number.isFinite(configuredDuration) && configuredDuration > 0
+          ? Math.min(video.duration, configuredDuration)
+          : video.duration;
+      }
+      renderedProgress = targetProgress;
+      video.currentTime = Math.min(
+        Math.max(0, duration - frameDuration),
+        targetProgress * duration
+      );
+    });
+
+    const markVideoReady = () => {
+      root.classList.add("is-video-ready");
+      scheduleRender();
+    };
+
+    video.addEventListener("loadeddata", markVideoReady);
+    video.addEventListener("canplay", markVideoReady);
+
+    video.addEventListener("error", () => {
+      root.classList.remove("is-video-ready");
+    });
+
+    window.addEventListener("scroll", scheduleRender, { passive: true });
+    window.addEventListener("resize", scheduleRender, { passive: true });
+    reducedMotion.addEventListener("change", updateMotionPreference);
+
+    readProgress();
+    updateMotionPreference();
+    video.load();
+  };
+
+  document.querySelectorAll("[data-scroll-feline]").forEach(initializeScrollFeline);
+</script>
+
+<style>
+  .scroll-feline {
+    position: fixed;
+    right: clamp(0.15rem, 1.2vw, 1rem);
+    bottom: max(0.45rem, env(safe-area-inset-bottom));
+    z-index: 45;
+    width: clamp(8.5rem, 14vw, 14rem);
+    aspect-ratio: 2 / 3;
+    pointer-events: none;
+    isolation: isolate;
+    overflow: visible;
+    filter: drop-shadow(0 0.65rem 1.2rem rgba(0, 0, 0, 0.2));
+  }
+
+  .scroll-feline__poster,
+  .scroll-feline__video {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+    transform: translateY(22%);
+  }
+
+  .scroll-feline__poster {
+    opacity: 1;
+  }
+
+  .scroll-feline__video {
+    opacity: 0;
+  }
+
+  .scroll-feline.is-video-ready .scroll-feline__video {
+    opacity: 1;
+  }
+
+  .scroll-feline.is-video-ready .scroll-feline__poster {
+    opacity: 0;
+  }
+
+  .scroll-feline.is-reduced-motion .scroll-feline__video {
+    display: none;
+  }
+
+  .scroll-feline.is-reduced-motion .scroll-feline__poster {
+    opacity: 1;
+  }
+
+  @media (max-width: 767px) {
+    .scroll-feline {
+      right: -0.35rem;
+      bottom: max(0.25rem, env(safe-area-inset-bottom));
+      width: clamp(7rem, 31vw, 9.5rem);
+    }
+  }
+
+  @media (max-width: 420px) {
+    .scroll-feline {
+      opacity: 0.92;
+    }
+  }
+
+</style>
